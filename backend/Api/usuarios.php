@@ -50,12 +50,13 @@ try {
 
 } catch (Throwable $e) {
 
+    error_log($e->getMessage());
+
     http_response_code(500);
 
     echo json_encode([
         "success" => false,
-        "message" => "No se pudo conectar con la base de datos.",
-        "error" => $e->getMessage()
+        "message" => "No se pudo conectar con la base de datos."
     ], JSON_UNESCAPED_UNICODE);
 
     exit;
@@ -115,13 +116,16 @@ if ($method === "GET") {
 
             $sql .= "
                 AND (
-                    nombres LIKE :search
-                    OR apellidos LIKE :search
-                    OR correo LIKE :search
+                    nombres LIKE :searchNombres
+                    OR apellidos LIKE :searchApellidos
+                    OR correo LIKE :searchCorreo
                 )
             ";
 
-            $params[":search"] = "%" . $search . "%";
+            $searchValue = "%" . $search . "%";
+            $params[":searchNombres"] = $searchValue;
+            $params[":searchApellidos"] = $searchValue;
+            $params[":searchCorreo"] = $searchValue;
         }
 
 
@@ -160,12 +164,13 @@ if ($method === "GET") {
 
     } catch (PDOException $e) {
 
+        error_log($e->getMessage());
+
         http_response_code(500);
 
         echo json_encode([
             "success" => false,
-            "message" => "Error al consultar los usuarios.",
-            "error" => $e->getMessage()
+            "message" => "Error al consultar los usuarios."
         ], JSON_UNESCAPED_UNICODE);
 
         exit;
@@ -358,12 +363,13 @@ if ($method === "POST") {
 
     } catch (PDOException $e) {
 
+        error_log($e->getMessage());
+
         http_response_code(500);
 
         echo json_encode([
             "success" => false,
-            "message" => "No fue posible crear el usuario.",
-            "error" => $e->getMessage()
+            "message" => "No fue posible crear el usuario."
         ], JSON_UNESCAPED_UNICODE);
 
         exit;
@@ -536,12 +542,13 @@ if ($method === "PUT") {
 
     } catch (PDOException $e) {
 
+        error_log($e->getMessage());
+
         http_response_code(500);
 
         echo json_encode([
             "success" => false,
-            "message" => "No fue posible actualizar el usuario.",
-            "error" => $e->getMessage()
+            "message" => "No fue posible actualizar el usuario."
         ], JSON_UNESCAPED_UNICODE);
 
         exit;
@@ -640,12 +647,13 @@ if ($method === "PATCH") {
 
     } catch (PDOException $e) {
 
+        error_log($e->getMessage());
+
         http_response_code(500);
 
         echo json_encode([
             "success" => false,
-            "message" => "No fue posible cambiar el estado del usuario.",
-            "error" => $e->getMessage()
+            "message" => "No fue posible cambiar el estado del usuario."
         ], JSON_UNESCAPED_UNICODE);
 
         exit;
@@ -718,12 +726,13 @@ if ($method === "DELETE") {
 
     } catch (PDOException $e) {
 
+        error_log($e->getMessage());
+
         http_response_code(500);
 
         echo json_encode([
             "success" => false,
-            "message" => "No fue posible eliminar el usuario.",
-            "error" => $e->getMessage()
+            "message" => "No fue posible eliminar el usuario."
         ], JSON_UNESCAPED_UNICODE);
 
         exit;

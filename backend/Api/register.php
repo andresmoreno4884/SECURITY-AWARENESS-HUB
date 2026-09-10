@@ -285,12 +285,13 @@ try {
 
 } catch (PDOException $e) {
 
+    error_log($e->getMessage());
+
     http_response_code(500);
 
     echo json_encode([
         "success" => false,
-        "message" => "No fue posible registrar el usuario.",
-        "error" => $e->getMessage()
+        "message" => "No fue posible registrar el usuario."
     ], JSON_UNESCAPED_UNICODE);
 }
 

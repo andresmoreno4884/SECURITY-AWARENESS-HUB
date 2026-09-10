@@ -15,12 +15,9 @@ const passwordMessage =
     document.getElementById("passwordMessage");
 
 
-let userFound = null;
+const API_URL = "../../backend/Api/recover_password.php";
 
-
-
-
-recoveryForm.addEventListener("submit", function (event) {
+recoveryForm.addEventListener("submit", async function (event) {
 
     event.preventDefault();
 
@@ -47,51 +44,25 @@ recoveryForm.addEventListener("submit", function (event) {
 
 
 
-    const users =
-        JSON.parse(
-            localStorage.getItem("sah_users") || "[]"
-        );
+    try {
+        const response = await fetch(API_URL, {
+            method: "POST",
+            credentials: "same-origin",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ action: "verify", correo: email })
+        });
+        const data = await response.json();
 
+        if (!response.ok || !data.success) {
+            throw new Error(data.message || "No encontramos una cuenta con este correo.");
+        }
 
-
-
-    userFound =
-        users.find(
-            user => user.email === email
-        );
-
-
-
-
-    if (!userFound) {
-
-        showMessage(
-            message,
-            "No encontramos una cuenta con este correo.",
-            "error"
-        );
-
-        return;
+        showMessage(message, data.message, "success");
+        recoveryForm.classList.add("hidden");
+        newPasswordForm.classList.remove("hidden");
+    } catch (error) {
+        showMessage(message, error.message, "error");
     }
-
-
-
-
-    showMessage(
-        message,
-        "Cuenta encontrada. Ahora crea una nueva contraseña.",
-        "success"
-    );
-
-
-
-
-    recoveryForm.classList.add("hidden");
-
-
-
-
-    newPasswordForm.classList.remove("hidden");
 
 });
 
@@ -119,11 +90,11 @@ newPasswordForm.addEventListener(
 
 
 
-        if (newPassword.length < 6) {
+        if (newPassword.length < 8) {
 
             showMessage(
                 passwordMessage,
-                "La contraseña debe tener mínimo 6 caracteres.",
+                "La contraseña debe tener mínimo 8 caracteres.",
                 "error"
             );
 
@@ -147,61 +118,24 @@ newPasswordForm.addEventListener(
 
 
 
-        const users =
-            JSON.parse(
-                localStorage.getItem("sah_users") || "[]"
-            );
+        try {
+            const response = await fetch(API_URL, {
+                method: "POST",
+                credentials: "same-origin",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ action: "reset", password: newPassword })
+            });
+            const data = await response.json();
 
+            if (!response.ok || !data.success) {
+                throw new Error(data.message || "No fue posible actualizar la cuenta.");
+            }
 
-
-
-        const userIndex =
-            users.findIndex(
-                user =>
-                    user.email === userFound.email
-            );
-
-
-        if (userIndex === -1) {
-
-            showMessage(
-                passwordMessage,
-                "No fue posible actualizar la cuenta.",
-                "error"
-            );
-
-            return;
+            showMessage(passwordMessage, data.message, "success");
+            setTimeout(() => { window.location.href = "login.php"; }, 1500);
+        } catch (error) {
+            showMessage(passwordMessage, error.message, "error");
         }
-
-
-        users[userIndex].password =
-            newPassword;
-
-
-
-
-        localStorage.setItem(
-            "sah_users",
-            JSON.stringify(users)
-        );
-
-
-
-
-        showMessage(
-            passwordMessage,
-            "Contraseña actualizada correctamente.",
-            "success"
-        );
-
-
-
-
-        setTimeout(() => {
-
-            window.location.href = "login.php";
-
-        }, 1500);
 
     }
 );

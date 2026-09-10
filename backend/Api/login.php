@@ -30,12 +30,13 @@ try {
 
 } catch (Throwable $e) {
 
+    error_log($e->getMessage());
+
     http_response_code(500);
 
     echo json_encode([
         "success" => false,
-        "message" => "No se pudo conectar con la base de datos.",
-        "error" => $e->getMessage()
+        "message" => "No se pudo conectar con la base de datos."
     ], JSON_UNESCAPED_UNICODE);
 
     exit;
@@ -124,12 +125,13 @@ try {
 
 } catch (PDOException $e) {
 
+    error_log($e->getMessage());
+
     http_response_code(500);
 
     echo json_encode([
         "success" => false,
-        "message" => "Error al consultar el usuario.",
-        "error" => $e->getMessage()
+        "message" => "Error al consultar el usuario."
     ], JSON_UNESCAPED_UNICODE);
 
     exit;

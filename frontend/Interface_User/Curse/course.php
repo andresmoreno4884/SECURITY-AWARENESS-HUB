@@ -52,7 +52,7 @@
                     <a href="../../Landing_Page/index.php">
                         Inicio
                     </a>
-                </li>S
+                </li>
 
                 <li>
                     <a href="#mi-curso" class="active">
@@ -162,7 +162,7 @@
 
             <div class="course-hero-image">
 
-                <img src="/frontend/Landing_Page/assets/imagenes/curso-phishing.png"
+                <img src="../../../Landing_Page/assets/imagenes/curso-phishing.png"
                     alt="Curso de phishing y seguridad digital">
 
             </div>
@@ -185,7 +185,7 @@
                     </span>
 
 
-                    <h1>
+                    <h1 id="cursoTitulo">
 
                         Fundamentos de
 
@@ -196,7 +196,7 @@
                     </h1>
 
 
-                    <p class="course-description">
+                    <p id="cursoDescripcion" class="course-description">
 
                         Aprende a identificar amenazas digitales,
                         proteger la información de la organización
@@ -225,7 +225,7 @@
                                     DURACIÓN
                                 </span>
 
-                                <strong>
+                                <strong id="cursoDuracion">
                                     2 horas
                                 </strong>
 
@@ -249,7 +249,7 @@
                                     MÓDULOS
                                 </span>
 
-                                <strong>
+                                <strong id="cursoModulos">
                                     4 módulos
                                 </strong>
 
@@ -273,7 +273,7 @@
                                     APROBACIÓN
                                 </span>
 
-                                <strong>
+                                <strong id="cursoAprobacion">
                                     70%
                                 </strong>
 
@@ -387,7 +387,7 @@
 
                         <div class="module-image">
 
-                            <img src="/frontend/Landing_Page/assets/imagenes/curso-ciberseguridad.png"
+                            <img src="../../../Landing_Page/assets/imagenes/curso-ciberseguridad.png"
                                 alt="Fundamentos de ciberseguridad">
 
                             <span class="module-number">
@@ -442,7 +442,7 @@
 
                         <div class="module-image">
 
-                            <img src="/frontend/Landing_Page/assets/imagenes/curso-password.png"
+                            <img src="../../../Landing_Page/assets/imagenes/curso-password.png"
                                 alt="Contraseñas seguras">
 
                             <span class="module-number">
@@ -497,7 +497,7 @@
 
                         <div class="module-image">
 
-                            <img src="/frontend/Landing_Page/assets/imagenes/curso-phishing.png" alt="Phishing">
+                            <img src="../../../Landing_Page/assets/imagenes/curso-phishing.png" alt="Phishing">
 
                             <span class="module-number">
                                 03
@@ -551,7 +551,7 @@
 
                         <div class="module-image">
 
-                            <img src="/frontend/Landing_Page/assets/imagenes/curso-ingenieria-social.png"
+                            <img src="../../../Landing_Page/assets/imagenes/curso-ingenieria-social.png"
                                 alt="Ingeniería social">
 
                             <span class="module-number">
@@ -737,11 +737,11 @@
                             EVALUACIÓN FINAL
                         </span>
 
-                        <h3>
+                        <h3 id="evaluacionTitulo">
                             Evaluación de Ciberseguridad
                         </h3>
 
-                        <p>
+                        <p id="evaluacionDescripcion">
 
                             Responde las preguntas relacionadas
                             con los módulos estudiados.
@@ -751,7 +751,7 @@
 
                         <div class="evaluation-details">
 
-                            <span>
+                            <span id="evaluacionPreguntas">
                                 <i class="bi bi-question-circle"></i>
                                 10 preguntas
                             </span>
@@ -761,7 +761,7 @@
                                 15 minutos
                             </span>
 
-                            <span>
+                            <span id="evaluacionAprobacion">
                                 <i class="bi bi-check2-circle"></i>
                                 Aprobación: 70%
                             </span>
@@ -771,7 +771,7 @@
                     </div>
 
 
-                    <button class="evaluation-button">
+                    <button id="iniciarEvaluacion" class="evaluation-button" type="button">
 
                         Presentar evaluación
 
@@ -814,7 +814,7 @@
                                 CALIFICACIÓN
                             </span>
 
-                            <strong>
+                            <strong id="resultadoPorcentaje">
                                 --
                             </strong>
 
@@ -844,7 +844,7 @@
                                 ESTADO
                             </span>
 
-                            <strong class="status-pending">
+                            <strong id="resultadoEstado" class="status-pending">
                                 EN CURSO
                             </strong>
 
@@ -1031,6 +1031,7 @@
 
     </footer>
 
+    <script src="../../scripts/course.php"></script>
 
 </body>
 

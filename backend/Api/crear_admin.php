@@ -98,15 +98,15 @@ try {
 
 } catch (PDOException $e) {
 
+    error_log($e->getMessage());
+
     http_response_code(500);
 
     echo json_encode([
 
         "success" => false,
 
-        "message" => "Error al crear el administrador.",
-
-        "error" => $e->getMessage()
+        "message" => "Error al crear el administrador."
 
     ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 }

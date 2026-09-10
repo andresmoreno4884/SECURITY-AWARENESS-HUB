@@ -17,7 +17,7 @@
 
     <link
         rel="stylesheet"
-        href="css/Dashboard.css">
+        href="css/dashboard.css">
 
 </head>
 

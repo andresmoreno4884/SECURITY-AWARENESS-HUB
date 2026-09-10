@@ -22,11 +22,12 @@ try {
 
 } catch (Throwable $e) {
 
+    error_log($e->getMessage());
+
     http_response_code(500);
 
     echo json_encode([
         "success" => false,
-        "message" => "Error al conectar con MySQL.",
-        "error" => $e->getMessage()
+        "message" => "Error al conectar con MySQL."
     ], JSON_UNESCAPED_UNICODE);
 }

@@ -467,6 +467,25 @@
 
                     </div>
 
+                    <div class="form-group">
+
+                        <label for="asignacionEvaluacion">
+                            Evaluación
+                        </label>
+
+                        <select
+                            id="asignacionEvaluacion"
+                            name="evaluacion_id"
+                            title="Seleccionar evaluación">
+
+                            <option value="">
+                                Seleccione una evaluación
+                            </option>
+
+                        </select>
+
+                    </div>
+
 
 
 

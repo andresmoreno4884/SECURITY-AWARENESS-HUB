@@ -7,10 +7,10 @@
 
 
     const EVALUACIONES_API =
-        "../../../backend/Api/evaluaciones.php";
+        "../../backend/Api/evaluaciones.php";
 
     const CURSOS_API =
-        "../../../backend/Api/courses.php";
+        "../../backend/Api/courses.php";
 
 
 

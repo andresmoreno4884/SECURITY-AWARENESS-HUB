@@ -532,9 +532,11 @@ select option {
 .dashboard-panel table {
     width: 100%;
 
+    min-width: 940px;
+
     border-collapse: collapse;
 
-    table-layout: fixed;
+    table-layout: auto;
 }
 
 .dashboard-panel thead {
@@ -573,6 +575,8 @@ select option {
     color: var(--text-secondary);
 
     font-size: 11px;
+
+    white-space: nowrap;
 
     vertical-align: middle;
 }

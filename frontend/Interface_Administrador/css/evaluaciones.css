@@ -1,9 +1,4 @@
-
-
-
-
-
-   :root {
+:root {
     --bg-main: #000604;
     --bg-panel: #03100b;
     --bg-card: #04130d;
@@ -46,17 +41,13 @@ html {
 body {
     min-height: 100vh;
     background:
-        radial-gradient(
-            circle at 80% 10%,
+        radial-gradient(circle at 80% 10%,
             rgba(0, 255, 136, 0.035),
-            transparent 30%
-        ),
-        linear-gradient(
-            135deg,
+            transparent 30%),
+        linear-gradient(135deg,
             #000604 0%,
             #010b07 50%,
-            #000604 100%
-        );
+            #000604 100%);
 
     color: var(--text-main);
 
@@ -225,11 +216,9 @@ body {
     border-radius: var(--radius-md);
 
     background:
-        linear-gradient(
-            145deg,
+        linear-gradient(145deg,
             rgba(4, 22, 14, 0.96),
-            rgba(2, 13, 9, 0.96)
-        );
+            rgba(2, 13, 9, 0.96));
 
     box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.015);
@@ -417,11 +406,9 @@ body {
     border-radius: var(--radius-lg);
 
     background:
-        linear-gradient(
-            145deg,
+        linear-gradient(145deg,
             rgba(3, 18, 12, 0.97),
-            rgba(1, 10, 7, 0.97)
-        );
+            rgba(1, 10, 7, 0.97));
 
     box-shadow:
         0 15px 45px rgba(0, 0, 0, 0.22);
@@ -485,9 +472,11 @@ body {
 .users-table {
     width: 100%;
 
+    min-width: 980px;
+
     border-collapse: collapse;
 
-    table-layout: fixed;
+    table-layout: auto;
 }
 
 .evaluaciones-table th,
@@ -519,6 +508,8 @@ body {
     color: var(--text-secondary);
 
     font-size: 10px;
+
+    white-space: nowrap;
 }
 
 .evaluaciones-table tbody tr,
@@ -1094,9 +1085,9 @@ body {
     width: 100%;
 }
 
-.dashboard-card.users-table-card > .card-header,
-.dashboard-card.users-table-card > .table-wrapper,
-.dashboard-card.users-table-card > .table-footer {
+.dashboard-card.users-table-card>.card-header,
+.dashboard-card.users-table-card>.table-wrapper,
+.dashboard-card.users-table-card>.table-footer {
     width: 100%;
 }
 
@@ -1143,7 +1134,7 @@ body {
 
 
 
-   .preguntas-section {
+.preguntas-section {
     padding: 14px;
 
     border: 1px solid var(--border);
@@ -1193,8 +1184,8 @@ body {
     text-align: center;
 }
 
-.preguntas-container:not(:empty) + .preguntas-empty-hint,
-.preguntas-container.has-preguntas + .preguntas-empty-hint {
+.preguntas-container:not(:empty)+.preguntas-empty-hint,
+.preguntas-container.has-preguntas+.preguntas-empty-hint {
     display: none;
 }
 
