@@ -335,6 +335,48 @@ body {
     vertical-align: middle;
 }
 
+.table-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.table-action {
+    min-height: 30px;
+    padding: 5px 9px;
+    border: 1px solid #294336;
+    border-radius: 7px;
+    color: var(--text-secondary);
+    background: transparent;
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+.table-action:hover {
+    border-color: var(--green);
+    color: var(--green);
+    background: rgba(53, 228, 119, 0.06);
+}
+
+.table-action.toggle:hover {
+    border-color: #ffd166;
+    color: #ffd166;
+    background: rgba(255, 209, 102, 0.06);
+}
+
+.table-action.delete:hover {
+    border-color: var(--danger);
+    color: var(--danger);
+    background: rgba(255, 92, 92, 0.06);
+}
+
 
 .loading-users {
     height: 180px;

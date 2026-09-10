@@ -835,9 +835,11 @@ select option {
     gap: 5px;
 }
 
-.table-action {
-    width: 29px;
-    height: 29px;
+.table-action,
+.table-action-button {
+    min-width: 29px;
+    min-height: 29px;
+    padding: 0 9px;
 
     display: inline-flex;
 
@@ -853,6 +855,10 @@ select option {
 
     color: #738279;
 
+    font-family: inherit;
+    font-size: 9px;
+    white-space: nowrap;
+
     cursor: pointer;
 
     transition:
@@ -861,7 +867,8 @@ select option {
         background var(--transition);
 }
 
-.table-action:hover {
+.table-action:hover,
+.table-action-button:hover {
     border-color:
         rgba(0, 255, 136, 0.35);
 
@@ -992,4 +999,10 @@ select option {
 
         transition-duration: 0.01ms !important;
     }
+}
+
+.table-action-button.delete:hover {
+    border-color: var(--danger);
+    color: var(--danger);
+    background: var(--danger-bg);
 }

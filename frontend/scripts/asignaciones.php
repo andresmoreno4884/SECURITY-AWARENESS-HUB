@@ -9,6 +9,7 @@ header("Content-Type: application/javascript; charset=UTF-8");
     const usuariosURL = "../../backend/Api/usuarios.php";
     const cursosURL = "../../backend/Api/courses.php";
     const evaluacionesURL = "../../backend/Api/evaluaciones.php";
+
     const elementos = {};
     let asignaciones = [];
     let filtradas = [];
@@ -17,15 +18,34 @@ header("Content-Type: application/javascript; charset=UTF-8");
 
     function obtenerElementos() {
         [
-            "totalAsignaciones", "asignacionesActivas", "asignacionesCompletadas",
-            "buscarAsignacion", "filtroEstadoAsignacion", "filtroTipoAsignacion",
-            "asignacionesTableBody", "contadorAsignaciones", "asignacionesMostradas",
-            "paginaAnteriorAsignaciones", "paginaActualAsignaciones", "paginaSiguienteAsignaciones",
-            "btnNuevaAsignacion", "asignacionModal", "asignacionModalOverlay",
-            "cerrarAsignacionModal", "cancelarAsignacion", "formAsignacion",
-            "asignacionId", "asignacionUsuario", "asignacionCurso", "asignacionEvaluacion", "asignacionTipo",
-            "asignacionFecha", "asignacionEstado", "asignacionFormMessage",
-            "guardarAsignacion", "modalAsignacionTitulo"
+            "totalAsignaciones",
+            "asignacionesActivas",
+            "asignacionesCompletadas",
+            "buscarAsignacion",
+            "filtroEstadoAsignacion",
+            "filtroTipoAsignacion",
+            "asignacionesTableBody",
+            "contadorAsignaciones",
+            "asignacionesMostradas",
+            "paginaAnteriorAsignaciones",
+            "paginaActualAsignaciones",
+            "paginaSiguienteAsignaciones",
+            "btnNuevaAsignacion",
+            "asignacionModal",
+            "asignacionModalOverlay",
+            "cerrarAsignacionModal",
+            "cancelarAsignacion",
+            "formAsignacion",
+            "asignacionId",
+            "asignacionUsuario",
+            "asignacionCurso",
+            "asignacionEvaluacion",
+            "asignacionTipo",
+            "asignacionFecha",
+            "asignacionEstado",
+            "asignacionFormMessage",
+            "guardarAsignacion",
+            "modalAsignacionTitulo"
         ].forEach(id => {
             elementos[id] = document.getElementById(id);
         });
@@ -39,201 +59,711 @@ header("Content-Type: application/javascript; charset=UTF-8");
 
     async function json(respuesta) {
         const datos = await respuesta.json();
+
         if (!respuesta.ok || !datos.success) {
-            throw new Error(datos.message || "No fue posible completar la operación.");
+            throw new Error(
+                datos.message || "No fue posible completar la operación."
+            );
         }
+
         return datos;
     }
 
     async function cargarOpciones() {
-        const [usuariosRespuesta, cursosRespuesta, evaluacionesRespuesta] = await Promise.all([
-            fetch(usuariosURL, { credentials: "same-origin" }).then(json),
-            fetch(cursosURL, { credentials: "same-origin" }).then(json),
-            fetch(evaluacionesURL, { credentials: "same-origin" }).then(json)
+        const [
+            usuariosRespuesta,
+            cursosRespuesta,
+            evaluacionesRespuesta
+        ] = await Promise.all([
+            fetch(usuariosURL, {
+                credentials: "same-origin"
+            }).then(json),
+
+            fetch(cursosURL, {
+                credentials: "same-origin"
+            }).then(json),
+
+            fetch(evaluacionesURL, {
+                credentials: "same-origin"
+            }).then(json)
         ]);
 
+        elementos.asignacionUsuario.innerHTML =
+            '<option value="">Seleccione un usuario</option>';
+
+        elementos.asignacionCurso.innerHTML =
+            '<option value="">Seleccione un curso</option>';
+
+        elementos.asignacionEvaluacion.innerHTML =
+            '<option value="">Seleccione una evaluación</option>';
+
         (usuariosRespuesta.usuarios || []).forEach(usuario => {
-            elementos.asignacionUsuario.add(new Option(
-                `${usuario.nombres} ${usuario.apellidos} - ${usuario.correo}`,
-                usuario.id
-            ));
+            elementos.asignacionUsuario.add(
+                new Option(
+                    `${usuario.nombres} ${usuario.apellidos} - ${usuario.correo}`,
+                    usuario.id
+                )
+            );
         });
 
-        (cursosRespuesta.cursos || []).filter(curso => curso.estado === "activo").forEach(curso => {
-            elementos.asignacionCurso.add(new Option(curso.titulo, curso.id));
-        });
+        (cursosRespuesta.cursos || [])
+            .filter(curso => curso.estado === "activo")
+            .forEach(curso => {
+                elementos.asignacionCurso.add(
+                    new Option(
+                        curso.titulo,
+                        curso.id
+                    )
+                );
+            });
 
-        (evaluacionesRespuesta.evaluaciones || []).filter(evaluacion => evaluacion.estado === "activo").forEach(evaluacion => {
-            elementos.asignacionEvaluacion.add(new Option(
-                `${evaluacion.titulo} - ${evaluacion.curso_titulo}`,
-                evaluacion.id
-            ));
-        });
+        (evaluacionesRespuesta.evaluaciones || [])
+            .filter(evaluacion => evaluacion.estado === "activo")
+            .forEach(evaluacion => {
+                elementos.asignacionEvaluacion.add(
+                    new Option(
+                        `${evaluacion.titulo} - ${evaluacion.curso_titulo}`,
+                        evaluacion.id
+                    )
+                );
+            });
     }
 
     async function cargarAsignaciones() {
         const params = new URLSearchParams();
-        const search = elementos.buscarAsignacion.value.trim();
-        const estado = elementos.filtroEstadoAsignacion.value;
-        const tipo = elementos.filtroTipoAsignacion.value;
 
-        if (search) params.set("search", search);
-        if (estado !== "todos") params.set("estado", estado);
-        if (tipo !== "todos") params.set("tipo", tipo);
+        const search =
+            elementos.buscarAsignacion.value.trim();
+
+        const estado =
+            elementos.filtroEstadoAsignacion.value;
+
+        const tipo =
+            elementos.filtroTipoAsignacion.value;
+
+        if (search) {
+            params.set("search", search);
+        }
+
+        if (estado !== "todos") {
+            params.set("estado", estado);
+        }
+
+        if (tipo !== "todos") {
+            params.set("tipo", tipo);
+        }
 
         try {
-            const datos = await fetch(`${API_URL}?${params}`, {
-                credentials: "same-origin",
-                headers: { "Accept": "application/json" }
-            }).then(json);
+            const datos = await fetch(
+                `${API_URL}?${params.toString()}`,
+                {
+                    credentials: "same-origin",
+                    headers: {
+                        "Accept": "application/json"
+                    }
+                }
+            ).then(json);
 
-            asignaciones = datos.asignaciones || [];
-            elementos.totalAsignaciones.textContent = datos.total ?? 0;
-            elementos.asignacionesActivas.textContent = datos.activas ?? 0;
-            elementos.asignacionesCompletadas.textContent = datos.completadas ?? 0;
+            asignaciones =
+                datos.asignaciones || [];
+
+            elementos.totalAsignaciones.textContent =
+                datos.total ?? 0;
+
+            elementos.asignacionesActivas.textContent =
+                datos.activas ?? 0;
+
+            elementos.asignacionesCompletadas.textContent =
+                datos.completadas ?? 0;
+
+            pagina = 1;
+
             aplicarPaginacion();
+
         } catch (error) {
-            elementos.asignacionesTableBody.innerHTML = `<tr><td colspan="6">${escapar(error.message)}</td></tr>`;
+
+            elementos.asignacionesTableBody.innerHTML = `
+                <tr>
+                    <td colspan="6">
+                        ${escapar(error.message)}
+                    </td>
+                </tr>
+            `;
         }
     }
 
     function aplicarPaginacion() {
         filtradas = asignaciones;
-        const totalPaginas = Math.max(1, Math.ceil(filtradas.length / porPagina));
-        pagina = Math.min(pagina, totalPaginas);
-        const inicio = (pagina - 1) * porPagina;
-        const paginaActual = filtradas.slice(inicio, inicio + porPagina);
 
-        elementos.asignacionesTableBody.innerHTML = paginaActual.length
-            ? paginaActual.map(fila).join("")
-            : '<tr><td colspan="6">No hay asignaciones para mostrar.</td></tr>';
-        elementos.contadorAsignaciones.textContent = `${filtradas.length} asignaciones`;
-        elementos.asignacionesMostradas.textContent = filtradas.length
-            ? `Mostrando ${inicio + 1} - ${inicio + paginaActual.length} de ${filtradas.length}`
-            : "No hay asignaciones para mostrar";
-        elementos.paginaActualAsignaciones.textContent = pagina;
-        elementos.paginaAnteriorAsignaciones.disabled = pagina <= 1;
-        elementos.paginaSiguienteAsignaciones.disabled = pagina >= totalPaginas;
+        const totalPaginas =
+            Math.max(
+                1,
+                Math.ceil(
+                    filtradas.length / porPagina
+                )
+            );
+
+        pagina =
+            Math.min(
+                Math.max(1, pagina),
+                totalPaginas
+            );
+
+        const inicio =
+            (pagina - 1) * porPagina;
+
+        const paginaActual =
+            filtradas.slice(
+                inicio,
+                inicio + porPagina
+            );
+
+        elementos.asignacionesTableBody.innerHTML =
+            paginaActual.length
+                ? paginaActual.map(fila).join("")
+                : `
+                    <tr>
+                        <td colspan="6">
+                            No hay asignaciones para mostrar.
+                        </td>
+                    </tr>
+                `;
+
+        elementos.contadorAsignaciones.textContent =
+            `${filtradas.length} asignaciones`;
+
+        elementos.asignacionesMostradas.textContent =
+            filtradas.length
+                ? `Mostrando ${inicio + 1} - ${inicio + paginaActual.length} de ${filtradas.length}`
+                : "No hay asignaciones para mostrar";
+
+        elementos.paginaActualAsignaciones.textContent =
+            pagina;
+
+        elementos.paginaAnteriorAsignaciones.disabled =
+            pagina <= 1;
+
+        elementos.paginaSiguienteAsignaciones.disabled =
+            pagina >= totalPaginas;
     }
 
     function fila(asignacion) {
-        const recurso = asignacion.tipo === "evaluacion"
-            ? asignacion.evaluacion || "Evaluación"
-            : asignacion.curso || "Curso";
-        const estado = asignacion.estado || "pendiente";
-        return `<tr>
-            <td>${escapar(asignacion.usuario)}</td>
-            <td>${escapar(recurso)}</td>
-            <td>${escapar(asignacion.tipo)}</td>
-            <td>${escapar(estado)}</td>
-            <td>${escapar(asignacion.fecha_asignacion)}</td>
-            <td><div class="table-actions">
-                <button type="button" class="table-action status" data-action="estado" data-id="${asignacion.id}">Cambiar estado</button>
-                <button type="button" class="table-action delete" data-action="eliminar" data-id="${asignacion.id}">Eliminar</button>
-            </div></td>
-        </tr>`;
+        const recurso =
+            asignacion.tipo === "evaluacion"
+                ? asignacion.evaluacion || "Evaluación"
+                : asignacion.curso || "Curso";
+
+        const estado =
+            asignacion.estado || "pendiente";
+
+        return `
+            <tr>
+                <td>
+                    ${escapar(asignacion.usuario)}
+                </td>
+
+                <td>
+                    ${escapar(recurso)}
+                </td>
+
+                <td>
+                    ${escapar(asignacion.tipo)}
+                </td>
+
+                <td>
+                    ${escapar(estado)}
+                </td>
+
+                <td>
+                    ${escapar(asignacion.fecha_asignacion)}
+                </td>
+
+                <td>
+                    <div class="table-actions">
+
+                        <button
+                            type="button"
+                            class="table-action edit"
+                            data-action="editar"
+                            data-id="${asignacion.id}">
+                            Editar
+                        </button>
+
+                        <button
+                            type="button"
+                            class="table-action status"
+                            data-action="estado"
+                            data-id="${asignacion.id}">
+                            Cambiar estado
+                        </button>
+
+                        <button
+                            type="button"
+                            class="table-action delete"
+                            data-action="eliminar"
+                            data-id="${asignacion.id}">
+                            Eliminar
+                        </button>
+
+                    </div>
+                </td>
+            </tr>
+        `;
     }
 
     function abrirNueva() {
         elementos.formAsignacion.reset();
+
         elementos.asignacionId.value = "";
-        elementos.asignacionFecha.value = new Date().toISOString().slice(0, 10);
-        elementos.modalAsignacionTitulo.textContent = "Nueva asignación";
-        elementos.guardarAsignacion.textContent = "Crear asignación";
-        elementos.asignacionModal.hidden = false;
+
+        elementos.asignacionFecha.value =
+            new Date().toISOString().slice(0, 10);
+
+        elementos.asignacionTipo.value =
+            "curso";
+
+        elementos.asignacionEstado.value =
+            "pendiente";
+
+        actualizarCamposTipo();
+
+        elementos.modalAsignacionTitulo.textContent =
+            "Nueva asignación";
+
+        elementos.guardarAsignacion.textContent =
+            "Crear asignación";
+
+        elementos.asignacionFormMessage.textContent =
+            "";
+
+        elementos.asignacionModal.hidden =
+            false;
+    }
+
+    function abrirEditar(id) {
+        const asignacion =
+            asignaciones.find(
+                item =>
+                    Number(item.id) === Number(id)
+            );
+
+        if (!asignacion) {
+            window.alert(
+                "No se encontró la asignación seleccionada."
+            );
+            return;
+        }
+
+        elementos.formAsignacion.reset();
+
+        elementos.asignacionId.value =
+            asignacion.id;
+
+        elementos.asignacionUsuario.value =
+            asignacion.usuario_id || "";
+
+        elementos.asignacionTipo.value =
+            asignacion.tipo || "curso";
+
+        elementos.asignacionFecha.value =
+            asignacion.fecha_asignacion || "";
+
+        elementos.asignacionEstado.value =
+            asignacion.estado || "pendiente";
+
+        actualizarCamposTipo();
+
+        if (asignacion.tipo === "evaluacion") {
+
+            elementos.asignacionEvaluacion.value =
+                asignacion.evaluacion_id || "";
+
+            elementos.asignacionCurso.value =
+                asignacion.curso_id || "";
+
+        } else {
+
+            elementos.asignacionCurso.value =
+                asignacion.curso_id || "";
+
+            elementos.asignacionEvaluacion.value =
+                asignacion.evaluacion_id || "";
+        }
+
+        elementos.modalAsignacionTitulo.textContent =
+            "Editar asignación";
+
+        elementos.guardarAsignacion.textContent =
+            "Guardar cambios";
+
+        elementos.asignacionFormMessage.textContent =
+            "";
+
+        elementos.asignacionModal.hidden =
+            false;
+    }
+
+    function actualizarCamposTipo() {
+        const esEvaluacion =
+            elementos.asignacionTipo.value ===
+            "evaluacion";
+
+        elementos.asignacionCurso.required =
+            !esEvaluacion;
+
+        elementos.asignacionEvaluacion.required =
+            esEvaluacion;
+
+        elementos.asignacionCurso.disabled =
+            esEvaluacion;
+
+        elementos.asignacionEvaluacion.disabled =
+            !esEvaluacion;
     }
 
     function cerrar() {
-        elementos.asignacionModal.hidden = true;
-        elementos.asignacionFormMessage.textContent = "";
+        elementos.asignacionModal.hidden =
+            true;
+
+        elementos.asignacionFormMessage.textContent =
+            "";
     }
 
     async function guardar(evento) {
         evento.preventDefault();
+
+        const id =
+            elementos.asignacionId.value;
+
         const datos = {
-            usuario_id: Number(elementos.asignacionUsuario.value),
-            curso_id: Number(elementos.asignacionCurso.value),
-            tipo: elementos.asignacionTipo.value,
-            fecha_asignacion: elementos.asignacionFecha.value,
-            estado: elementos.asignacionEstado.value
+            usuario_id:
+                Number(
+                    elementos.asignacionUsuario.value
+                ),
+
+            curso_id:
+                Number(
+                    elementos.asignacionCurso.value
+                ),
+
+            tipo:
+                elementos.asignacionTipo.value,
+
+            fecha_asignacion:
+                elementos.asignacionFecha.value,
+
+            estado:
+                elementos.asignacionEstado.value
         };
-        if (elementos.asignacionId.value) {
-            datos.id = Number(elementos.asignacionId.value);
+
+        if (id) {
+            datos.id = Number(id);
         }
 
         if (datos.tipo === "evaluacion") {
-            datos.evaluacion_id = Number(elementos.asignacionEvaluacion.value);
+
+            datos.evaluacion_id =
+                Number(
+                    elementos.asignacionEvaluacion.value
+                );
+
             datos.curso_id = 0;
+
+        } else {
+
+            datos.evaluacion_id = 0;
         }
 
+        elementos.guardarAsignacion.disabled =
+            true;
+
         try {
-            const resultado = await fetch(API_URL, {
-                method: datos.id ? "PUT" : "POST",
-                credentials: "same-origin",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(datos)
-            }).then(json);
-            elementos.asignacionFormMessage.textContent = resultado.message;
+
+            const resultado =
+                await fetch(API_URL, {
+                    method: id ? "PUT" : "POST",
+
+                    credentials: "same-origin",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json",
+
+                        "Accept":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify(datos)
+
+                }).then(json);
+
             cerrar();
+
             await cargarAsignaciones();
+
+            window.alert(
+                resultado.message
+            );
+
         } catch (error) {
-            elementos.asignacionFormMessage.textContent = error.message;
+
+            elementos.asignacionFormMessage.textContent =
+                error.message;
+
+        } finally {
+
+            elementos.guardarAsignacion.disabled =
+                false;
         }
     }
 
     async function cambiarEstado(id) {
-        const asignacion = asignaciones.find(item => Number(item.id) === Number(id));
-        const estados = ["pendiente", "progreso", "completado"];
-        const siguiente = estados[(estados.indexOf(asignacion.estado) + 1) % estados.length];
-        await fetch(API_URL, {
-            method: "PATCH",
-            credentials: "same-origin",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ id: Number(id), estado: siguiente })
-        }).then(json);
-        await cargarAsignaciones();
+        const asignacion =
+            asignaciones.find(
+                item =>
+                    Number(item.id) === Number(id)
+            );
+
+        if (!asignacion) {
+            window.alert(
+                "No se encontró la asignación."
+            );
+            return;
+        }
+
+        const estados = [
+            "pendiente",
+            "progreso",
+            "completado"
+        ];
+
+        const posicion =
+            estados.indexOf(
+                asignacion.estado
+            );
+
+        const siguiente =
+            estados[
+                (posicion + 1) % estados.length
+            ];
+
+        if (
+            !window.confirm(
+                `¿Cambiar el estado de esta asignación a "${siguiente}"?`
+            )
+        ) {
+            return;
+        }
+
+        try {
+
+            await fetch(API_URL, {
+                method: "PATCH",
+
+                credentials: "same-origin",
+
+                headers: {
+                    "Content-Type":
+                        "application/json",
+
+                    "Accept":
+                        "application/json"
+                },
+
+                body:
+                    JSON.stringify({
+                        id: Number(id),
+                        estado: siguiente
+                    })
+
+            }).then(json);
+
+            await cargarAsignaciones();
+
+        } catch (error) {
+
+            window.alert(
+                error.message
+            );
+        }
     }
 
     async function eliminar(id) {
-        if (!window.confirm("¿Eliminar esta asignación?")) return;
-        await fetch(API_URL, {
-            method: "DELETE",
-            credentials: "same-origin",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ id: Number(id) })
-        }).then(json);
-        await cargarAsignaciones();
+        if (
+            !window.confirm(
+                "¿Eliminar esta asignación?"
+            )
+        ) {
+            return;
+        }
+
+        try {
+
+            await fetch(API_URL, {
+                method: "DELETE",
+
+                credentials: "same-origin",
+
+                headers: {
+                    "Content-Type":
+                        "application/json",
+
+                    "Accept":
+                        "application/json"
+                },
+
+                body:
+                    JSON.stringify({
+                        id: Number(id)
+                    })
+            }).then(json);
+
+            await cargarAsignaciones();
+
+        } catch (error) {
+
+            window.alert(
+                error.message
+            );
+        }
     }
 
     function iniciar() {
         obtenerElementos();
-        elementos.btnNuevaAsignacion.addEventListener("click", abrirNueva);
-        elementos.cerrarAsignacionModal.addEventListener("click", cerrar);
-        elementos.cancelarAsignacion.addEventListener("click", cerrar);
-        elementos.asignacionModalOverlay.addEventListener("click", cerrar);
-        elementos.formAsignacion.addEventListener("submit", guardar);
-        elementos.asignacionTipo.addEventListener("change", () => {
-            const esEvaluacion = elementos.asignacionTipo.value === "evaluacion";
-            elementos.asignacionCurso.required = !esEvaluacion;
-            elementos.asignacionEvaluacion.required = esEvaluacion;
-            elementos.asignacionCurso.disabled = esEvaluacion;
-            elementos.asignacionEvaluacion.disabled = !esEvaluacion;
-        });
-        elementos.buscarAsignacion.addEventListener("input", cargarAsignaciones);
-        elementos.filtroEstadoAsignacion.addEventListener("change", cargarAsignaciones);
-        elementos.filtroTipoAsignacion.addEventListener("change", cargarAsignaciones);
-        elementos.paginaAnteriorAsignaciones.addEventListener("click", () => { pagina--; aplicarPaginacion(); });
-        elementos.paginaSiguienteAsignaciones.addEventListener("click", () => { pagina++; aplicarPaginacion(); });
-        elementos.asignacionesTableBody.addEventListener("click", evento => {
-            const boton = evento.target.closest("button[data-action]");
-            if (!boton) return;
-            const accion = boton.dataset.action;
-            (accion === "estado" ? cambiarEstado : eliminar)(boton.dataset.id);
-        });
-        Promise.all([cargarOpciones(), cargarAsignaciones()]).catch(error => {
-            elementos.asignacionesTableBody.innerHTML = `<tr><td colspan="6">${escapar(error.message)}</td></tr>`;
+
+        elementos.btnNuevaAsignacion
+            .addEventListener(
+                "click",
+                abrirNueva
+            );
+
+        elementos.cerrarAsignacionModal
+            .addEventListener(
+                "click",
+                cerrar
+            );
+
+        elementos.cancelarAsignacion
+            .addEventListener(
+                "click",
+                cerrar
+            );
+
+        elementos.asignacionModalOverlay
+            .addEventListener(
+                "click",
+                cerrar
+            );
+
+        elementos.formAsignacion
+            .addEventListener(
+                "submit",
+                guardar
+            );
+
+        elementos.asignacionTipo
+            .addEventListener(
+                "change",
+                actualizarCamposTipo
+            );
+
+        elementos.buscarAsignacion
+            .addEventListener(
+                "input",
+                cargarAsignaciones
+            );
+
+        elementos.filtroEstadoAsignacion
+            .addEventListener(
+                "change",
+                cargarAsignaciones
+            );
+
+        elementos.filtroTipoAsignacion
+            .addEventListener(
+                "change",
+                cargarAsignaciones
+            );
+
+        elementos.paginaAnteriorAsignaciones
+            .addEventListener(
+                "click",
+                () => {
+                    if (pagina > 1) {
+                        pagina--;
+                        aplicarPaginacion();
+                    }
+                }
+            );
+
+        elementos.paginaSiguienteAsignaciones
+            .addEventListener(
+                "click",
+                () => {
+                    pagina++;
+                    aplicarPaginacion();
+                }
+            );
+
+        elementos.asignacionesTableBody
+            .addEventListener(
+                "click",
+                evento => {
+
+                    const boton =
+                        evento.target.closest(
+                            "button[data-action]"
+                        );
+
+                    if (!boton) {
+                        return;
+                    }
+
+                    const accion =
+                        boton.dataset.action;
+
+                    const id =
+                        boton.dataset.id;
+
+                    if (accion === "editar") {
+                        abrirEditar(id);
+                        return;
+                    }
+
+                    if (accion === "estado") {
+                        cambiarEstado(id);
+                        return;
+                    }
+
+                    if (accion === "eliminar") {
+                        eliminar(id);
+                    }
+                }
+            );
+
+        Promise.all([
+            cargarOpciones(),
+            cargarAsignaciones()
+        ]).catch(error => {
+
+            elementos.asignacionesTableBody.innerHTML = `
+                <tr>
+                    <td colspan="6">
+                        ${escapar(error.message)}
+                    </td>
+                </tr>
+            `;
         });
     }
 
-    iniciar();
+    if (document.readyState === "loading") {
+        document.addEventListener(
+            "DOMContentLoaded",
+            iniciar
+        );
+    } else {
+        iniciar();
+    }
+
 })();

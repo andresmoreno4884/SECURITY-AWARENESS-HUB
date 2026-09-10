@@ -562,6 +562,13 @@ body {
     white-space: nowrap;
 }
 
+.assignments-table th:last-child,
+.assignments-table td:last-child,
+.users-table th:last-child,
+.users-table td:last-child {
+    min-width: 255px;
+}
+
 .assignments-table tbody tr,
 .users-table tbody tr {
     transition: background 0.2s ease;
@@ -575,19 +582,23 @@ body {
 .table-actions {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
+    min-width: 245px;
 }
 
 .table-action {
-    min-height: 29px;
-    padding: 0 9px;
+    min-height: 38px;
+    padding: 0 14px;
     border: 1px solid rgba(0, 255, 115, 0.2);
-    border-radius: 7px;
+    border-radius: 8px;
     color: var(--text-secondary);
     background: transparent;
-    font-size: 9px;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 700;
     cursor: pointer;
     white-space: nowrap;
+    transition: all 0.2s ease;
 }
 
 .table-action:hover {
