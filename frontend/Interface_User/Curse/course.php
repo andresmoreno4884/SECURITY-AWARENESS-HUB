@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/../../includes/page_context.php'; ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -11,13 +12,13 @@
         Curso | Security Awareness Hub
     </title>
 
-    <!-- Bootstrap -->
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Iconos Bootstrap -->
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <!-- CSS DEL CURSO -->
+
     <link rel="stylesheet" href="css/curse.css">
 
 </head>
@@ -26,17 +27,15 @@
 <body>
 
 
-    <!-- =========================================================
-     BARRA DE NAVEGACIÓN
-========================================================= -->
+
 
     <header class="course-navbar">
 
         <nav class="course-nav-container">
 
-            <!-- LOGO -->
 
-            <a href="index.html" class="course-logo">
+
+            <a href="index.php" class="course-logo">
 
                 <span>SECURITY</span>
 
@@ -45,12 +44,12 @@
             </a>
 
 
-            <!-- MENÚ -->
+
 
             <ul class="course-menu">
 
                 <li>
-                    <a href="../../Landing_Page/index.html">
+                    <a href="../../Landing_Page/index.php">
                         Inicio
                     </a>
                 </li>S
@@ -82,7 +81,7 @@
             </ul>
 
 
-            <!-- USUARIO -->
+
 
             <div class="course-user">
 
@@ -112,16 +111,12 @@
 
 
 
-    <!-- =========================================================
-     CONTENIDO PRINCIPAL
-========================================================= -->
+
 
     <main>
 
 
-        <!-- =========================================================
-     MIGAS DE PAN
-========================================================= -->
+
 
         <section class="breadcrumb-section">
 
@@ -129,7 +124,7 @@
 
                 <div class="breadcrumbs">
 
-                    <a href="index.html">
+                    <a href="index.php">
                         <i class="bi bi-house"></i>
                         Inicio
                     </a>
@@ -158,14 +153,12 @@
 
 
 
-        <!-- =========================================================
-     HERO DEL CURSO
-========================================================= -->
+
 
         <section id="mi-curso" class="course-hero">
 
 
-            <!-- IMAGEN DE FONDO -->
+
 
             <div class="course-hero-image">
 
@@ -175,12 +168,12 @@
             </div>
 
 
-            <!-- OSCURECIMIENTO -->
+
 
             <div class="course-hero-overlay"></div>
 
 
-            <!-- CONTENIDO -->
+
 
             <div class="page-container course-hero-content">
 
@@ -213,7 +206,7 @@
                     </p>
 
 
-                    <!-- INFORMACIÓN DEL CURSO -->
+
 
                     <div class="course-info">
 
@@ -295,7 +288,7 @@
 
 
 
-                <!-- TARJETA DE PROGRESO -->
+
 
                 <div class="course-progress-card">
 
@@ -342,16 +335,14 @@
 
 
 
-        <!-- =========================================================
-     CONTENIDO DEL CURSO
-========================================================= -->
+
 
         <section id="contenido" class="content-section">
 
             <div class="page-container">
 
 
-                <!-- ENCABEZADO -->
+
 
                 <div class="section-heading">
 
@@ -385,12 +376,12 @@
 
 
 
-                <!-- MÓDULOS -->
+
 
                 <div class="modules-grid">
 
 
-                    <!-- MÓDULO 1 -->
+
 
                     <article class="module-card">
 
@@ -445,7 +436,7 @@
 
 
 
-                    <!-- MÓDULO 2 -->
+
 
                     <article class="module-card">
 
@@ -500,7 +491,7 @@
 
 
 
-                    <!-- MÓDULO 3 -->
+
 
                     <article class="module-card active-module">
 
@@ -554,7 +545,7 @@
 
 
 
-                    <!-- MÓDULO 4 -->
+
 
                     <article class="module-card">
 
@@ -615,9 +606,7 @@
 
 
 
-        <!-- =========================================================
-     ACTIVIDAD
-========================================================= -->
+
 
         <section id="actividad" class="activity-section">
 
@@ -693,9 +682,7 @@
 
 
 
-        <!-- =========================================================
-     EVALUACIÓN
-========================================================= -->
+
 
         <section id="evaluacion" class="evaluation-section">
 
@@ -801,9 +788,7 @@
 
 
 
-        <!-- =========================================================
-     RESULTADOS
-========================================================= -->
+
 
         <section class="results-section">
 
@@ -813,7 +798,7 @@
                 <div class="results-grid">
 
 
-                    <!-- RESULTADO -->
+
 
                     <div class="result-card">
 
@@ -843,7 +828,7 @@
 
 
 
-                    <!-- ESTADO -->
+
 
                     <div class="result-card">
 
@@ -873,7 +858,7 @@
 
 
 
-                    <!-- PROGRESO -->
+
 
                     <div class="result-card">
 
@@ -910,9 +895,7 @@
 
 
 
-        <!-- =========================================================
-     MI PROGRESO
-========================================================= -->
+
 
         <section id="progreso" class="progress-section">
 
@@ -1018,9 +1001,7 @@
 
 
 
-    <!-- =========================================================
-     FOOTER
-========================================================= -->
+
 
     <footer class="course-footer">
 

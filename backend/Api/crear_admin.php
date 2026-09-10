@@ -8,21 +8,12 @@ try {
 
     $pdo = Database::connect();
 
-    // =====================================================
-    // DATOS DEL ADMINISTRADOR
-    // =====================================================
-
     $nombres = "Administrador";
     $apellidos = "Sistema";
     $correo = "admin@sah.com";
     $password = "Admin123*";
     $rol = "admin";
     $estado = "activo";
-
-
-    // =====================================================
-    // VERIFICAR SI YA EXISTE
-    // =====================================================
 
     $sql = "SELECT id FROM usuarios WHERE correo = :correo LIMIT 1";
 
@@ -42,20 +33,10 @@ try {
         exit;
     }
 
-
-    // =====================================================
-    // GENERAR HASH SEGURO
-    // =====================================================
-
     $passwordHash = password_hash(
         $password,
         PASSWORD_DEFAULT
     );
-
-
-    // =====================================================
-    // INSERTAR ADMINISTRADOR
-    // =====================================================
 
     $sql = "INSERT INTO usuarios
             (
@@ -92,11 +73,6 @@ try {
 
         ":estado" => $estado
     ]);
-
-
-    // =====================================================
-    // RESPUESTA
-    // =====================================================
 
     echo json_encode([
 

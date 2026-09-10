@@ -1,3 +1,5 @@
+<?php require_once __DIR__ . '/../includes/page_context.php'; ?>
+<?php $publicRegistrationEnabled = false; ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -5,48 +7,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Crear cuenta | Security Awareness</title>
+    <title><?= page_escape($pageTitle) ?></title>
 
     <link rel="stylesheet" href="css/register.css">
 </head>
 
 <body>
 
-    <!-- FONDO -->
+
     <div class="background"></div>
 
-    <!-- CONTENEDOR PRINCIPAL -->
+
     <main class="register-container">
 
         <section class="register-card">
 
-            <!-- LOGO -->
+
             <div class="logo">
                 <span>SECURITY</span>
                 <strong>AWARENESS</strong>
             </div>
 
-            <!-- TITULO -->
+
             <div class="register-header">
 
                 <p class="tag">SECURITY AWARENESS</p>
 
                 <h1>
-                    Crear una
-                    <span>cuenta</span>
+                    Registro
+                    <span>controlado</span>
                 </h1>
 
                 <p>
-                    Regístrate para comenzar tu capacitación
-                    en seguridad digital.
+                    Las cuentas son creadas por el administrador
+                    desde el dashboard de usuarios.
                 </p>
 
             </div>
 
-            <!-- FORMULARIO -->
+            <?php if ($publicRegistrationEnabled): ?>
+
+
             <form id="registerForm">
 
-                <!-- NOMBRES -->
+
                 <div class="input-group">
 
                     <label for="nombres">
@@ -64,7 +68,7 @@
 
                 </div>
 
-                <!-- APELLIDOS -->
+
                 <div class="input-group">
 
                     <label for="apellidos">
@@ -82,7 +86,7 @@
 
                 </div>
 
-                <!-- CORREO -->
+
                 <div class="input-group">
 
                     <label for="correo">
@@ -100,7 +104,7 @@
 
                 </div>
 
-                <!-- CONTRASEÑA -->
+
                 <div class="input-group">
 
                     <label for="password">
@@ -119,7 +123,7 @@
 
                 </div>
 
-                <!-- CONFIRMAR CONTRASEÑA -->
+
                 <div class="input-group">
 
                     <label for="confirmPassword">
@@ -138,10 +142,10 @@
 
                 </div>
 
-                <!-- MENSAJE -->
+
                 <div id="message"></div>
 
-                <!-- BOTÓN -->
+
                 <button
                     type="submit"
                     class="register-button"
@@ -151,22 +155,37 @@
 
             </form>
 
-            <!-- LOGIN -->
+            <script src="../scripts/register.php"></script>
+
+            <?php else: ?>
+
+            <div class="registration-notice" role="status">
+                <p>
+                    El registro público está desactivado.
+                </p>
+                <p>
+                    Solicita al administrador que cree tu cuenta y te asigne el acceso correspondiente.
+                </p>
+            </div>
+
+            <?php endif; ?>
+
+
             <div class="login-link">
 
                 <span>
                     ¿Ya tienes una cuenta?
                 </span>
 
-                <a href="login.html">
+                <a href="login.php">
                     Iniciar sesión
                 </a>
 
             </div>
 
-            <!-- REGRESAR -->
+
             <a
-                href="../Landing_Page/index.html"
+                href="../Landing_Page/index.php"
                 class="back-link"
             >
                 ← Volver al inicio
@@ -175,8 +194,6 @@
         </section>
 
     </main>
-
-    <script src="js/register.js"></script>
 
 </body>
 

@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/../includes/page_context.php'; ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -10,45 +11,40 @@
         content="width=device-width, initial-scale=1.0">
 
     <title>
-        Usuarios | Security Awareness Hub
+        Empresas | Security Awareness Hub
     </title>
 
-    <!-- CSS específico de usuarios -->
+
     <link
         rel="stylesheet"
-        href="css/usuarios.css?v=2">
+        href="css/empresas.css">
 
 </head>
 
 <body>
 
-    <!-- =====================================================
-         USUARIOS
-         SECURITY AWARENESS HUB
-    ====================================================== -->
-
-    <section class="users-panel">
 
 
-        <!-- =================================================
-             ENCABEZADO
-        ================================================== -->
+    <section class="companies-panel">
+
+
+
 
         <div class="dashboard-heading">
 
             <div>
 
                 <span class="section-label">
-                    GESTIÓN DE USUARIOS
+                    GESTIÓN DE EMPRESAS
                 </span>
 
                 <h2>
-                    Usuarios
+                    Empresas
                 </h2>
 
                 <p>
-                    Administra los usuarios y consulta
-                    su información dentro de la plataforma.
+                    Administra las empresas registradas y consulta
+                    la información relacionada con la plataforma.
                 </p>
 
             </div>
@@ -57,23 +53,109 @@
             <button
                 type="button"
                 class="admin-button"
-                id="btnNuevoUsuario">
+                id="btnNuevaEmpresa">
 
-                + Nuevo usuario
+                + Nueva empresa
 
             </button>
 
         </div>
 
 
-        <!-- =================================================
-             FILTROS
-        ================================================== -->
+
+
+        <div class="dashboard-cards">
+
+
+
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    ▣
+                </div>
+
+                <div>
+
+                    <span>
+                        EMPRESAS
+                    </span>
+
+                    <strong id="totalEmpresas">
+                        0
+                    </strong>
+
+                    <small>
+                        Empresas registradas
+                    </small>
+
+                </div>
+
+            </div>
+
+
+
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <span>
+                        ACTIVAS
+                    </span>
+
+                    <strong id="empresasActivas">
+                        0
+                    </strong>
+
+                    <small>
+                        Empresas activas
+                    </small>
+
+                </div>
+
+            </div>
+
+
+
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    ◉
+                </div>
+
+                <div>
+
+                    <span>
+                        INACTIVAS
+                    </span>
+
+                    <strong id="empresasInactivas">
+                        0
+                    </strong>
+
+                    <small>
+                        Empresas inactivas
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
 
         <div class="users-toolbar">
 
 
-            <!-- BUSCADOR -->
+
 
             <div class="search-box">
 
@@ -83,48 +165,56 @@
 
                 <input
                     type="search"
-                    id="buscarUsuario"
-                    placeholder="Buscar por nombre, apellido o correo..."
+                    id="buscarEmpresa"
+                    placeholder="Buscar por nombre, NIT o correo..."
                     autocomplete="off">
 
             </div>
 
 
-            <!-- ESTADO -->
+
 
             <select
                 class="users-filter"
-                id="filtroEstado"
-                title="Filtrar por estado">
+                id="filtroEstadoEmpresa"
+                title="Filtrar empresas por estado">
 
                 <option value="todos">
                     Todos los estados
                 </option>
 
                 <option value="activo">
-                    Activos
+                    Activas
                 </option>
 
                 <option value="inactivo">
-                    Inactivos
+                    Inactivas
                 </option>
 
             </select>
 
 
-            <!-- ROL -->
+
 
             <select
                 class="users-filter"
-                id="filtroRol"
-                title="Filtrar por rol">
+                id="filtroTipoEmpresa"
+                title="Filtrar empresas por tipo">
 
                 <option value="todos">
-                    Todos los roles
+                    Todos los tipos
                 </option>
 
-                <option value="usuario">
-                    Usuarios
+                <option value="privada">
+                    Privada
+                </option>
+
+                <option value="publica">
+                    Pública
+                </option>
+
+                <option value="mixta">
+                    Mixta
                 </option>
 
             </select>
@@ -132,14 +222,12 @@
         </div>
 
 
-        <!-- =================================================
-             DIRECTORIO
-        ================================================== -->
+
 
         <div class="dashboard-card users-table-card">
 
 
-            <!-- HEADER -->
+
 
             <div class="card-header">
 
@@ -150,7 +238,7 @@
                     </span>
 
                     <h3>
-                        Usuarios registrados
+                        Empresas registradas
                     </h3>
 
                 </div>
@@ -158,7 +246,7 @@
 
                 <span
                     class="card-period"
-                    id="contadorUsuarios">
+                    id="contadorEmpresas">
 
                     Cargando...
 
@@ -167,24 +255,30 @@
             </div>
 
 
-            <!-- =================================================
-                 TABLA
-            ================================================== -->
+
 
             <div class="table-wrapper">
 
-                <table class="users-table">
+                <table class="users-table companies-table">
 
                     <thead>
 
                         <tr>
 
                             <th>
-                                USUARIO
+                                EMPRESA
                             </th>
 
                             <th>
-                                ROL
+                                NIT
+                            </th>
+
+                            <th>
+                                CORREO
+                            </th>
+
+                            <th>
+                                TELÉFONO
                             </th>
 
                             <th>
@@ -204,24 +298,17 @@
                     </thead>
 
 
-                    <!--
-                        IMPORTANTE:
 
-                        Este tbody comienza vacío.
 
-                        Los usuarios serán cargados posteriormente
-                        desde MySQL mediante PHP + JSON.
-                    -->
-
-                    <tbody id="usuariosTableBody">
+                    <tbody id="empresasTableBody">
 
                         <tr>
 
                             <td
-                                colspan="5"
+                                colspan="7"
                                 class="loading-users">
 
-                                Cargando usuarios...
+                                Cargando empresas...
 
                             </td>
 
@@ -234,14 +321,12 @@
             </div>
 
 
-            <!-- =================================================
-                 FOOTER TABLA
-            ================================================== -->
+
 
             <div class="table-footer">
 
-                <span id="usuariosMostrados">
-                    Cargando usuarios...
+                <span id="empresasMostradas">
+                    Cargando empresas...
                 </span>
 
 
@@ -250,7 +335,7 @@
                     <button
                         type="button"
                         class="pagination-button"
-                        id="paginaAnterior"
+                        id="paginaAnteriorEmpresa"
                         disabled>
 
                         ←
@@ -261,7 +346,7 @@
                     <button
                         type="button"
                         class="pagination-button active"
-                        id="paginaActual">
+                        id="paginaActualEmpresa">
 
                         1
 
@@ -271,7 +356,7 @@
                     <button
                         type="button"
                         class="pagination-button"
-                        id="paginaSiguiente"
+                        id="paginaSiguienteEmpresa"
                         disabled>
 
                         →
@@ -285,13 +370,11 @@
         </div>
 
 
-        <!-- =================================================
-             MODAL NUEVO / EDITAR USUARIO
-        ================================================== -->
+
 
         <div
             class="user-modal"
-            id="usuarioModal"
+            id="empresaModal"
             hidden>
 
             <div class="user-modal-overlay"></div>
@@ -301,10 +384,10 @@
                 class="user-modal-content"
                 role="dialog"
                 aria-modal="true"
-                aria-labelledby="modalUsuarioTitulo">
+                aria-labelledby="modalEmpresaTitulo">
 
 
-                <!-- HEADER MODAL -->
+
 
                 <div class="user-modal-header">
 
@@ -314,8 +397,8 @@
                             ADMINISTRACIÓN
                         </span>
 
-                        <h3 id="modalUsuarioTitulo">
-                            Nuevo usuario
+                        <h3 id="modalEmpresaTitulo">
+                            Nueva empresa
                         </h3>
 
                     </div>
@@ -324,7 +407,7 @@
                     <button
                         type="button"
                         class="modal-close"
-                        id="cerrarUsuarioModal"
+                        id="cerrarEmpresaModal"
                         aria-label="Cerrar">
 
                         ×
@@ -334,120 +417,135 @@
                 </div>
 
 
-                <!-- =================================================
-                     FORMULARIO
-                ================================================== -->
-
-                <form id="formUsuario">
 
 
-                    <!-- ID OCULTO -->
+                <form id="formEmpresa">
+
+
+
 
                     <input
                         type="hidden"
-                        id="usuarioId">
+                        id="empresaId">
 
 
-                    <!-- NOMBRES -->
+
 
                     <div class="form-group">
 
-                        <label for="usuarioNombres">
-                            Nombres
+                        <label for="empresaNombre">
+                            Nombre de la empresa
                         </label>
 
                         <input
                             type="text"
-                            id="usuarioNombres"
-                            name="nombres"
-                            placeholder="Ingrese los nombres"
-                            maxlength="100"
-                            required>
-
-                    </div>
-
-
-                    <!-- APELLIDOS -->
-
-                    <div class="form-group">
-
-                        <label for="usuarioApellidos">
-                            Apellidos
-                        </label>
-
-                        <input
-                            type="text"
-                            id="usuarioApellidos"
-                            name="apellidos"
-                            placeholder="Ingrese los apellidos"
-                            maxlength="100"
-                            required>
-
-                    </div>
-
-
-                    <!-- CORREO -->
-
-                    <div class="form-group">
-
-                        <label for="usuarioCorreo">
-                            Correo electrónico
-                        </label>
-
-                        <input
-                            type="email"
-                            id="usuarioCorreo"
-                            name="correo"
-                            placeholder="usuario@empresa.com"
+                            id="empresaNombre"
+                            name="nombre"
+                            placeholder="Ingrese el nombre de la empresa"
                             maxlength="150"
                             required>
 
                     </div>
 
 
-                    <!-- CONTRASEÑA -->
+
 
                     <div class="form-group">
 
-                        <label for="usuarioPassword">
-                            Contraseña
+                        <label for="empresaNit">
+                            NIT
                         </label>
 
                         <input
-                            type="password"
-                            id="usuarioPassword"
-                            name="password"
-                            placeholder="Ingrese una contraseña"
-                            minlength="6"
+                            type="text"
+                            id="empresaNit"
+                            name="nit"
+                            placeholder="Ingrese el NIT"
+                            maxlength="30"
                             required>
-
-                        <small>
-                            La contraseña será almacenada de forma segura.
-                        </small>
 
                     </div>
 
 
-                    <!-- ROL -->
+
 
                     <div class="form-group">
 
-                        <label for="usuarioRol">
-                            Rol
+                        <label for="empresaCorreo">
+                            Correo electrónico
+                        </label>
+
+                        <input
+                            type="email"
+                            id="empresaCorreo"
+                            name="correo"
+                            placeholder="empresa@correo.com"
+                            maxlength="150"
+                            required>
+
+                    </div>
+
+
+
+
+                    <div class="form-group">
+
+                        <label for="empresaTelefono">
+                            Teléfono
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="empresaTelefono"
+                            name="telefono"
+                            placeholder="Ingrese el número de teléfono"
+                            maxlength="30">
+
+                    </div>
+
+
+
+
+                    <div class="form-group">
+
+                        <label for="empresaDireccion">
+                            Dirección
+                        </label>
+
+                        <input
+                            type="text"
+                            id="empresaDireccion"
+                            name="direccion"
+                            placeholder="Ingrese la dirección"
+                            maxlength="200">
+
+                    </div>
+
+
+
+
+                    <div class="form-group">
+
+                        <label for="empresaTipo">
+                            Tipo de empresa
                         </label>
 
                         <select
-                            id="usuarioRol"
-                            name="rol"
-                            title="Seleccionar rol"
+                            id="empresaTipo"
+                            name="tipo"
+                            title="Seleccionar tipo de empresa"
                             required>
 
-                            <option value="usuario">
-                                Usuario
+                            <option value="privada">
+                                Privada
                             </option>
 
-                            <option value="admin">
-                                Administrador
+                            <option value="publica">
+                                Pública
+                            </option>
+
+                            <option value="mixta">
+                                Mixta
                             </option>
 
                         </select>
@@ -455,26 +553,26 @@
                     </div>
 
 
-                    <!-- ESTADO -->
+
 
                     <div class="form-group">
 
-                        <label for="usuarioEstado">
+                        <label for="empresaEstado">
                             Estado
                         </label>
 
                         <select
-                            id="usuarioEstado"
+                            id="empresaEstado"
                             name="estado"
-                            title="Seleccionar estado"
+                            title="Seleccionar estado de la empresa"
                             required>
 
                             <option value="activo">
-                                Activo
+                                Activa
                             </option>
 
                             <option value="inactivo">
-                                Inactivo
+                                Inactiva
                             </option>
 
                         </select>
@@ -482,25 +580,23 @@
                     </div>
 
 
-                    <!-- MENSAJE -->
+
 
                     <div
-                        id="usuarioFormMessage"
+                        id="empresaFormMessage"
                         class="user-form-message"
                         aria-live="polite">
                     </div>
 
 
-                    <!-- =================================================
-                         BOTONES
-                    ================================================== -->
+
 
                     <div class="user-modal-actions">
 
                         <button
                             type="button"
                             class="modal-button secondary"
-                            id="cancelarUsuario">
+                            id="cancelarEmpresa">
 
                             Cancelar
 
@@ -510,9 +606,9 @@
                         <button
                             type="submit"
                             class="modal-button primary"
-                            id="guardarUsuario">
+                            id="guardarEmpresa">
 
-                            Crear usuario
+                            Crear empresa
 
                         </button>
 
@@ -526,8 +622,6 @@
 
 
     </section>
-
-    <script src="js/usuarios.js?v=2"></script>
 
 </body>
 

@@ -1,21 +1,15 @@
-/* ============================================================
-   SECURITY AWARENESS HUB
-   GESTIÓN DE CURSOS
-   courses_admin.js
-   ============================================================ */
+<?php header('Content-Type: application/javascript; charset=UTF-8'); ?>
+
+
 
 function inicializarCursos() {
 
-    /* ========================================================
-       CONFIGURACIÓN
-    ======================================================== */
+
 
     const API_URL = "../../backend/Api/courses.php";
 
 
-    /* ========================================================
-       ELEMENTOS DEL DOM
-    ======================================================== */
+
 
     const tablaBody =
         document.getElementById("cursosTableBody");
@@ -102,9 +96,7 @@ function inicializarCursos() {
         document.getElementById("paginaSiguienteCurso");
 
 
-    /* ========================================================
-       VALIDAR ELEMENTOS
-    ======================================================== */
+
 
     if (
         !tablaBody ||
@@ -138,16 +130,14 @@ function inicializarCursos() {
     ) {
 
         console.error(
-            "courses_admin.js: No se encontraron todos los elementos necesarios."
+            "courses_admin.php: No se encontraron todos los elementos necesarios."
         );
 
         return;
     }
 
 
-    /* ========================================================
-       ESTADO
-    ======================================================== */
+
 
     let cursos = [];
 
@@ -160,9 +150,7 @@ function inicializarCursos() {
     let temporizadorBusqueda = null;
 
 
-    /* ========================================================
-       OBTENER JSON
-    ======================================================== */
+
 
     async function obtenerRespuestaJSON(response) {
 
@@ -186,9 +174,7 @@ function inicializarCursos() {
     }
 
 
-    /* ========================================================
-       ESCAPAR HTML
-    ======================================================== */
+
 
     function escapeHTML(valor) {
 
@@ -209,9 +195,7 @@ function inicializarCursos() {
     }
 
 
-    /* ========================================================
-       FORMATEAR NIVEL
-    ======================================================== */
+
 
     function formatearNivel(nivel) {
 
@@ -231,9 +215,7 @@ function inicializarCursos() {
     }
 
 
-    /* ========================================================
-       FORMATEAR ESTADO
-    ======================================================== */
+
 
     function formatearEstado(estado) {
 
@@ -243,9 +225,7 @@ function inicializarCursos() {
     }
 
 
-    /* ========================================================
-       FORMATEAR FECHA
-    ======================================================== */
+
 
     function formatearFecha(fecha) {
 
@@ -283,9 +263,7 @@ function inicializarCursos() {
     }
 
 
-    /* ========================================================
-       MOSTRAR CARGANDO
-    ======================================================== */
+
 
     function mostrarCargando() {
 
@@ -311,9 +289,7 @@ function inicializarCursos() {
     }
 
 
-    /* ========================================================
-       CARGAR CURSOS
-    ======================================================== */
+
 
     async function cargarCursos() {
 
@@ -452,9 +428,7 @@ function inicializarCursos() {
     }
 
 
-    /* ========================================================
-       INDICADORES
-    ======================================================== */
+
 
     function actualizarIndicadores() {
 
@@ -497,9 +471,7 @@ function inicializarCursos() {
     }
 
 
-    /* ========================================================
-       PAGINACIÓN
-    ======================================================== */
+
 
     function aplicarPaginacion() {
 
@@ -566,9 +538,7 @@ function inicializarCursos() {
     }
 
 
-    /* ========================================================
-       RENDERIZAR CURSOS
-    ======================================================== */
+
 
     function renderizarCursos(lista) {
 
@@ -616,7 +586,7 @@ function inicializarCursos() {
                 return `
                     <tr>
 
-                        <!-- CURSO -->
+
 
                         <td>
 
@@ -641,7 +611,7 @@ function inicializarCursos() {
                         </td>
 
 
-                        <!-- DESCRIPCIÓN -->
+
 
                         <td>
 
@@ -661,7 +631,7 @@ function inicializarCursos() {
                         </td>
 
 
-                        <!-- NIVEL -->
+
 
                         <td>
 
@@ -678,7 +648,7 @@ function inicializarCursos() {
                         </td>
 
 
-                        <!-- DURACIÓN -->
+
 
                         <td>
 
@@ -689,7 +659,7 @@ function inicializarCursos() {
                         </td>
 
 
-                        <!-- MÓDULOS -->
+
 
                         <td>
 
@@ -700,7 +670,7 @@ function inicializarCursos() {
                         </td>
 
 
-                        <!-- APROBACIÓN -->
+
 
                         <td>
 
@@ -711,7 +681,7 @@ function inicializarCursos() {
                         </td>
 
 
-                        <!-- ESTADO -->
+
 
                         <td>
 
@@ -733,7 +703,7 @@ function inicializarCursos() {
                         </td>
 
 
-                        <!-- FECHA -->
+
 
                         <td>
 
@@ -746,7 +716,7 @@ function inicializarCursos() {
                         </td>
 
 
-                        <!-- ACCIONES -->
+
 
                         <td>
 
@@ -799,9 +769,7 @@ function inicializarCursos() {
     }
 
 
-    /* ========================================================
-       FOOTER
-    ======================================================== */
+
 
     function actualizarFooter(
         total,
@@ -832,9 +800,7 @@ function inicializarCursos() {
     }
 
 
-    /* ========================================================
-       BOTONES PAGINACIÓN
-    ======================================================== */
+
 
     function actualizarBotonesPaginacion(
         totalPaginas
@@ -853,9 +819,7 @@ function inicializarCursos() {
     }
 
 
-    /* ========================================================
-       ABRIR MODAL NUEVO
-    ======================================================== */
+
 
     function abrirModalNuevoCurso() {
 
@@ -874,7 +838,7 @@ function inicializarCursos() {
             "activo";
 
 
-       
+
 
         modalCursoTitulo.textContent =
             "Nuevo curso";
@@ -904,9 +868,7 @@ function inicializarCursos() {
     }
 
 
-    /* ========================================================
-       ABRIR MODAL EDITAR
-    ======================================================== */
+
 
     function abrirModalEditarCurso(
         curso
@@ -972,9 +934,7 @@ function inicializarCursos() {
     }
 
 
-    /* ========================================================
-       CERRAR MODAL
-    ======================================================== */
+
 
     function cerrarModalCurso() {
 
@@ -991,9 +951,7 @@ function inicializarCursos() {
     }
 
 
-    /* ========================================================
-       MENSAJES
-    ======================================================== */
+
 
     function mostrarMensajeFormulario(
         mensaje,
@@ -1020,9 +978,7 @@ function inicializarCursos() {
     }
 
 
-    /* ========================================================
-       BLOQUEAR FORMULARIO
-    ======================================================== */
+
 
     function bloquearFormulario(
         bloquear
@@ -1050,9 +1006,7 @@ function inicializarCursos() {
     }
 
 
-    /* ========================================================
-       CREAR CURSO
-    ======================================================== */
+
 
     async function crearCurso(
         datos
@@ -1144,9 +1098,7 @@ function inicializarCursos() {
     }
 
 
-    /* ========================================================
-       EDITAR CURSO
-    ======================================================== */
+
 
     async function editarCurso(
         id,
@@ -1240,9 +1192,7 @@ function inicializarCursos() {
     }
 
 
-    /* ========================================================
-       CAMBIAR ESTADO
-    ======================================================== */
+
 
     async function cambiarEstado(
         curso
@@ -1341,9 +1291,7 @@ function inicializarCursos() {
     }
 
 
-    /* ========================================================
-       ELIMINAR CURSO
-    ======================================================== */
+
 
     async function eliminarCurso(
         curso
@@ -1427,9 +1375,7 @@ function inicializarCursos() {
     }
 
 
-    /* ========================================================
-       EVENTOS DE TABLA
-    ======================================================== */
+
 
     tablaBody.addEventListener(
         "click",
@@ -1502,9 +1448,7 @@ function inicializarCursos() {
     );
 
 
-    /* ========================================================
-       NUEVO CURSO
-    ======================================================== */
+
 
     btnNuevoCurso.addEventListener(
         "click",
@@ -1512,9 +1456,7 @@ function inicializarCursos() {
     );
 
 
-    /* ========================================================
-       CERRAR MODAL
-    ======================================================== */
+
 
     cerrarCursoModal.addEventListener(
         "click",
@@ -1543,9 +1485,7 @@ function inicializarCursos() {
     }
 
 
-    /* ========================================================
-       FORMULARIO
-    ======================================================== */
+
 
     formCurso.addEventListener(
         "submit",
@@ -1592,9 +1532,7 @@ function inicializarCursos() {
             };
 
 
-            /* ================================================
-               VALIDACIONES FRONTEND
-            ================================================= */
+
 
             if (
                 !datos.titulo
@@ -1696,9 +1634,7 @@ function inicializarCursos() {
             }
 
 
-            /* ================================================
-               GUARDAR
-            ================================================= */
+
 
             if (id) {
 
@@ -1718,9 +1654,7 @@ function inicializarCursos() {
     );
 
 
-    /* ========================================================
-       BUSCADOR
-    ======================================================== */
+
 
     buscarCurso.addEventListener(
         "input",
@@ -1744,9 +1678,7 @@ function inicializarCursos() {
     );
 
 
-    /* ========================================================
-       FILTRO ESTADO
-    ======================================================== */
+
 
     filtroEstadoCurso.addEventListener(
         "change",
@@ -1754,9 +1686,7 @@ function inicializarCursos() {
     );
 
 
-    /* ========================================================
-       FILTRO NIVEL
-    ======================================================== */
+
 
     filtroNivelCurso.addEventListener(
         "change",
@@ -1764,9 +1694,7 @@ function inicializarCursos() {
     );
 
 
-    /* ========================================================
-       PÁGINA ANTERIOR
-    ======================================================== */
+
 
     paginaAnteriorCurso.addEventListener(
         "click",
@@ -1782,9 +1710,7 @@ function inicializarCursos() {
     );
 
 
-    /* ========================================================
-       PÁGINA SIGUIENTE
-    ======================================================== */
+
 
     paginaSiguienteCurso.addEventListener(
         "click",
@@ -1813,9 +1739,7 @@ function inicializarCursos() {
     );
 
 
-    /* ========================================================
-       ESCAPE
-    ======================================================== */
+
 
     document.addEventListener(
         "keydown",
@@ -1832,19 +1756,14 @@ function inicializarCursos() {
     );
 
 
-    /* ========================================================
-       INICIO
-    ======================================================== */
+
 
     cargarCursos();
 
 }
 
 
-/* ============================================================
-   INICIALIZACIÓN
-   COMPATIBLE CON CARGA DINÁMICA DEL PANEL
-============================================================ */
+
 
 if (document.readyState === "loading") {
 

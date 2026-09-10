@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/../includes/page_context.php'; ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -12,16 +13,12 @@
 
 <body>
 
-    <!-- =====================================================
-         FONDO DEL LOGIN
-         ===================================================== -->
+
 
     <div class="login-background"></div>
 
 
-    <!-- =====================================================
-         CONTENIDO DEL LOGIN
-         ===================================================== -->
+
 
     <main class="login-container">
 
@@ -74,7 +71,7 @@
                     </label>
 
 
-                    <a href="/frontend/authentication/forgot-password.html" class="forgot-password">
+                    <a href="/frontend/authentication/forgot-password.php" class="forgot-password">
                         ¿Olvidaste tu contraseña?
                     </a>
 
@@ -103,9 +100,9 @@
     </main>
 
 
-    <!-- JAVASCRIPT -->
 
-    <script src="js/login.js"></script>
+
+    <script src="../scripts/login.php"></script>
 
 </body>
 

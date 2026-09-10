@@ -1,7 +1,6 @@
-/* =====================================================
-   SECURITY AWARENESS
-   RECUPERACIÓN DE CONTRASEÑA
-===================================================== */
+<?php header('Content-Type: application/javascript; charset=UTF-8'); ?>
+
+
 
 const recoveryForm =
     document.getElementById("recoveryForm");
@@ -19,9 +18,7 @@ const passwordMessage =
 let userFound = null;
 
 
-/* =====================================================
-   BUSCAR CUENTA
-===================================================== */
+
 
 recoveryForm.addEventListener("submit", function (event) {
 
@@ -48,9 +45,7 @@ recoveryForm.addEventListener("submit", function (event) {
     }
 
 
-    /* ================================================
-       OBTENER USUARIOS
-    ================================================= */
+
 
     const users =
         JSON.parse(
@@ -58,9 +53,7 @@ recoveryForm.addEventListener("submit", function (event) {
         );
 
 
-    /* ================================================
-       BUSCAR USUARIO
-    ================================================= */
+
 
     userFound =
         users.find(
@@ -68,9 +61,7 @@ recoveryForm.addEventListener("submit", function (event) {
         );
 
 
-    /* ================================================
-       NO ENCONTRADO
-    ================================================= */
+
 
     if (!userFound) {
 
@@ -84,9 +75,7 @@ recoveryForm.addEventListener("submit", function (event) {
     }
 
 
-    /* ================================================
-       CUENTA ENCONTRADA
-    ================================================= */
+
 
     showMessage(
         message,
@@ -95,25 +84,19 @@ recoveryForm.addEventListener("submit", function (event) {
     );
 
 
-    /* ================================================
-       OCULTAR CORREO
-    ================================================= */
+
 
     recoveryForm.classList.add("hidden");
 
 
-    /* ================================================
-       MOSTRAR NUEVA CONTRASEÑA
-    ================================================= */
+
 
     newPasswordForm.classList.remove("hidden");
 
 });
 
 
-/* =====================================================
-   CAMBIAR CONTRASEÑA
-===================================================== */
+
 
 newPasswordForm.addEventListener(
     "submit",
@@ -134,9 +117,7 @@ newPasswordForm.addEventListener(
                 .value;
 
 
-        /* ============================================
-           VALIDAR LONGITUD
-        ============================================ */
+
 
         if (newPassword.length < 6) {
 
@@ -150,9 +131,7 @@ newPasswordForm.addEventListener(
         }
 
 
-        /* ============================================
-           CONFIRMAR
-        ============================================ */
+
 
         if (newPassword !== confirmNewPassword) {
 
@@ -166,9 +145,7 @@ newPasswordForm.addEventListener(
         }
 
 
-        /* ============================================
-           OBTENER USUARIOS
-        ============================================ */
+
 
         const users =
             JSON.parse(
@@ -176,9 +153,7 @@ newPasswordForm.addEventListener(
             );
 
 
-        /* ============================================
-           ACTUALIZAR CONTRASEÑA
-        ============================================ */
+
 
         const userIndex =
             users.findIndex(
@@ -203,9 +178,7 @@ newPasswordForm.addEventListener(
             newPassword;
 
 
-        /* ============================================
-           GUARDAR
-        ============================================ */
+
 
         localStorage.setItem(
             "sah_users",
@@ -213,9 +186,7 @@ newPasswordForm.addEventListener(
         );
 
 
-        /* ============================================
-           MENSAJE
-        ============================================ */
+
 
         showMessage(
             passwordMessage,
@@ -224,13 +195,11 @@ newPasswordForm.addEventListener(
         );
 
 
-        /* ============================================
-           VOLVER AL LOGIN
-        ============================================ */
+
 
         setTimeout(() => {
 
-            window.location.href = "login.html";
+            window.location.href = "login.php";
 
         }, 1500);
 
@@ -238,9 +207,7 @@ newPasswordForm.addEventListener(
 );
 
 
-/* =====================================================
-   FUNCIÓN MENSAJES
-===================================================== */
+
 
 function showMessage(element, text, type) {
 
@@ -256,4 +223,4 @@ function showMessage(element, text, type) {
         element.style.color = "#43e27c";
 
     }
-} 
+}

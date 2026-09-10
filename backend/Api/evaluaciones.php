@@ -1,10 +1,6 @@
 <?php
 
-/* ============================================================
-   SECURITY AWARENESS HUB
-   API DE EVALUACIONES
-   PHP + MySQL + JSON
-============================================================ */
+
 
 header("Content-Type: application/json; charset=UTF-8");
 
@@ -13,9 +9,7 @@ session_start();
 require_once __DIR__ . "/../Config/database.php";
 
 
-/* ============================================================
-   RESPUESTA JSON
-============================================================ */
+
 
 function respuesta($success, $message = "", $data = [], $status = 200)
 {
@@ -36,9 +30,7 @@ function respuesta($success, $message = "", $data = [], $status = 200)
 }
 
 
-/* ============================================================
-   VERIFICAR SESIÓN
-============================================================ */
+
 
 if (
     !isset($_SESSION["authenticated"]) ||
@@ -55,9 +47,7 @@ if (
 }
 
 
-/* ============================================================
-   VERIFICAR ROL ADMINISTRADOR
-============================================================ */
+
 
 if (
     !isset($_SESSION["rol"]) ||
@@ -74,9 +64,7 @@ if (
 }
 
 
-/* ============================================================
-   CONEXIÓN
-============================================================ */
+
 
 try {
 
@@ -94,16 +82,12 @@ try {
 }
 
 
-/* ============================================================
-   MÉTODO HTTP
-============================================================ */
+
 
 $method = $_SERVER["REQUEST_METHOD"];
 
 
-/* ============================================================
-   OBTENER DATOS JSON
-============================================================ */
+
 
 $input = [];
 
@@ -125,10 +109,7 @@ if (!empty($rawInput)) {
 }
 
 
-/* ============================================================
-   VALIDAR ESTRUCTURA DE PREGUNTAS
-   (una sola opción correcta por pregunta, mínimo 2 opciones)
-============================================================ */
+
 
 function validarPreguntas($preguntas)
 {
@@ -201,12 +182,7 @@ function validarPreguntas($preguntas)
 }
 
 
-/* ============================================================
-   GET
-   LISTAR EVALUACIONES  ->  /evaluaciones.php
-   VER UNA EVALUACIÓN COMPLETA (con preguntas y opciones)
-                          ->  /evaluaciones.php?id=5
-============================================================ */
+
 
 if ($method === "GET") {
 
@@ -216,9 +192,7 @@ if ($method === "GET") {
 
     try {
 
-        /* --------------------------------------------------
-           DETALLE DE UNA EVALUACIÓN (con preguntas/opciones)
-        -------------------------------------------------- */
+
 
         if ($id > 0) {
 
@@ -293,9 +267,7 @@ if ($method === "GET") {
 
         }
 
-        /* --------------------------------------------------
-           LISTA GENERAL (sin preguntas, solo resumen)
-        -------------------------------------------------- */
+
 
         $stmt = $conn->prepare("
             SELECT
@@ -340,10 +312,7 @@ if ($method === "GET") {
 }
 
 
-/* ============================================================
-   POST
-   CREAR EVALUACIÓN (con preguntas y opciones anidadas)
-============================================================ */
+
 
 if ($method === "POST") {
 
@@ -353,9 +322,7 @@ if ($method === "POST") {
     $porcentaje = (int)($input["porcentaje_aprobacion"] ?? 70);
     $preguntas = $input["preguntas"] ?? [];
 
-    /* --------------------------------------------------------
-       VALIDACIONES BÁSICAS
-    -------------------------------------------------------- */
+
 
     if ($cursoId <= 0) {
 
@@ -391,9 +358,7 @@ if ($method === "POST") {
 
     try {
 
-        /* ----------------------------------------------------
-           VERIFICAR QUE EL CURSO EXISTA
-        ---------------------------------------------------- */
+
 
         $checkCurso = $conn->prepare("
             SELECT id FROM cursos WHERE id = ? LIMIT 1
@@ -407,9 +372,7 @@ if ($method === "POST") {
 
         }
 
-        /* ----------------------------------------------------
-           TRANSACCIÓN: EVALUACIÓN + PREGUNTAS + OPCIONES
-        ---------------------------------------------------- */
+
 
         $conn->beginTransaction();
 
@@ -500,11 +463,7 @@ if ($method === "POST") {
 }
 
 
-/* ============================================================
-   PUT
-   EDITAR EVALUACIÓN
-   (reemplaza datos básicos + preguntas/opciones por completo)
-============================================================ */
+
 
 if ($method === "PUT") {
 
@@ -581,10 +540,7 @@ if ($method === "PUT") {
             $id
         ]);
 
-        /* ----------------------------------------------------
-           BORRAR PREGUNTAS ANTERIORES
-           (las opciones se borran solas por ON DELETE CASCADE)
-        ---------------------------------------------------- */
+
 
         $stmtDelete = $conn->prepare("
             DELETE FROM preguntas WHERE evaluacion_id = ?
@@ -649,10 +605,7 @@ if ($method === "PUT") {
 }
 
 
-/* ============================================================
-   PATCH
-   ACTIVAR / DESACTIVAR
-============================================================ */
+
 
 if ($method === "PATCH") {
 
@@ -705,10 +658,7 @@ if ($method === "PATCH") {
 }
 
 
-/* ============================================================
-   DELETE
-   ELIMINAR EVALUACIÓN
-============================================================ */
+
 
 if ($method === "DELETE") {
 
@@ -762,8 +712,6 @@ if ($method === "DELETE") {
 }
 
 
-/* ============================================================
-   MÉTODO NO SOPORTADO
-============================================================ */
+
 
 respuesta(false, "Método HTTP no permitido.", [], 405);

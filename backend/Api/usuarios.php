@@ -1,30 +1,16 @@
 <?php
 
-/**
- * ============================================================
- * SECURITY AWARENESS HUB
- * API - GESTIÓN DE USUARIOS
- * PHP + MYSQL + JSON
- * ============================================================
- */
+
 
 header("Content-Type: application/json; charset=UTF-8");
 
 session_start();
 
-/**
- * ============================================================
- * CONEXIÓN
- * ============================================================
- */
+
 
 require_once __DIR__ . "/../Config/database.php";
 
-/**
- * ============================================================
- * VERIFICAR SESIÓN
- * ============================================================
- */
+
 
 if (
     !isset($_SESSION["authenticated"]) ||
@@ -40,11 +26,7 @@ if (
     exit;
 }
 
-/**
- * ============================================================
- * VERIFICAR ROL ADMINISTRADOR
- * ============================================================
- */
+
 
 if (
     !isset($_SESSION["rol"]) ||
@@ -60,11 +42,7 @@ if (
     exit;
 }
 
-/**
- * ============================================================
- * CONECTAR MYSQL
- * ============================================================
- */
+
 
 try {
 
@@ -83,19 +61,11 @@ try {
     exit;
 }
 
-/**
- * ============================================================
- * MÉTODO HTTP
- * ============================================================
- */
+
 
 $method = $_SERVER["REQUEST_METHOD"];
 
-/**
- * ============================================================
- * LEER JSON
- * ============================================================
- */
+
 
 $input = json_decode(
     file_get_contents("php://input"),
@@ -106,12 +76,7 @@ if (!is_array($input)) {
     $input = [];
 }
 
-/**
- * ============================================================
- * GET
- * LISTAR / BUSCAR USUARIOS
- * ============================================================
- */
+
 
 if ($method === "GET") {
 
@@ -144,9 +109,7 @@ if ($method === "GET") {
 
         $params = [];
 
-        /**
-         * BUSCADOR
-         */
+
 
         if ($search !== "") {
 
@@ -161,9 +124,7 @@ if ($method === "GET") {
             $params[":search"] = "%" . $search . "%";
         }
 
-        /**
-         * FILTRO ESTADO
-         */
+
 
         if (
             $estado !== "" &&
@@ -177,9 +138,7 @@ if ($method === "GET") {
             $params[":estado"] = $estado;
         }
 
-        /**
-         * FILTRO ROL
-         */
+
 
         $sql .= "
             ORDER BY id DESC
@@ -213,12 +172,7 @@ if ($method === "GET") {
     }
 }
 
-/**
- * ============================================================
- * POST
- * CREAR USUARIO
- * ============================================================
- */
+
 
 if ($method === "POST") {
 
@@ -246,9 +200,7 @@ if ($method === "POST") {
         ? trim($input["estado"])
         : "activo";
 
-    /**
-     * VALIDAR CAMPOS
-     */
+
 
     if (
         $nombres === "" ||
@@ -267,9 +219,7 @@ if ($method === "POST") {
         exit;
     }
 
-    /**
-     * VALIDAR CORREO
-     */
+
 
     if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
 
@@ -283,9 +233,7 @@ if ($method === "POST") {
         exit;
     }
 
-    /**
-     * VALIDAR CONTRASEÑA
-     */
+
 
     if (strlen($password) < 6) {
 
@@ -299,9 +247,7 @@ if ($method === "POST") {
         exit;
     }
 
-    /**
-     * VALIDAR ROL
-     */
+
 
     if (!in_array($rol, ["usuario", "admin"], true)) {
 
@@ -315,9 +261,7 @@ if ($method === "POST") {
         exit;
     }
 
-    /**
-     * VALIDAR ESTADO
-     */
+
 
     if (!in_array($estado, ["activo", "inactivo"], true)) {
 
@@ -331,9 +275,7 @@ if ($method === "POST") {
         exit;
     }
 
-    /**
-     * COMPROBAR CORREO EXISTENTE
-     */
+
 
     try {
 
@@ -360,18 +302,14 @@ if ($method === "POST") {
             exit;
         }
 
-        /**
-         * CREAR HASH
-         */
+
 
         $passwordHash = password_hash(
             $password,
             PASSWORD_DEFAULT
         );
 
-        /**
-         * INSERTAR
-         */
+
 
         $stmt = $pdo->prepare("
             INSERT INTO usuarios (
@@ -432,12 +370,7 @@ if ($method === "POST") {
     }
 }
 
-/**
- * ============================================================
- * PUT
- * EDITAR USUARIO
- * ============================================================
- */
+
 
 if ($method === "PUT") {
 
@@ -520,9 +453,7 @@ if ($method === "PUT") {
 
     try {
 
-        /**
-         * COMPROBAR QUE EL USUARIO EXISTA
-         */
+
 
         $find = $pdo->prepare("
             SELECT id
@@ -547,9 +478,7 @@ if ($method === "PUT") {
             exit;
         }
 
-        /**
-         * COMPROBAR CORREO REPETIDO
-         */
+
 
         $check = $pdo->prepare("
             SELECT id
@@ -576,9 +505,7 @@ if ($method === "PUT") {
             exit;
         }
 
-        /**
-         * ACTUALIZAR
-         */
+
 
         $stmt = $pdo->prepare("
             UPDATE usuarios
@@ -621,12 +548,7 @@ if ($method === "PUT") {
     }
 }
 
-/**
- * ============================================================
- * PATCH
- * ACTIVAR / DESACTIVAR USUARIO
- * ============================================================
- */
+
 
 if ($method === "PATCH") {
 
@@ -662,9 +584,7 @@ if ($method === "PATCH") {
         exit;
     }
 
-    /**
-     * EVITAR QUE EL ADMIN SE DESACTIVE A SÍ MISMO
-     */
+
 
     if (
         $id === (int) $_SESSION["user_id"] &&
@@ -732,12 +652,7 @@ if ($method === "PATCH") {
     }
 }
 
-/**
- * ============================================================
- * DELETE
- * ELIMINAR USUARIO
- * ============================================================
- */
+
 
 if ($method === "DELETE") {
 
@@ -757,9 +672,7 @@ if ($method === "DELETE") {
         exit;
     }
 
-    /**
-     * EVITAR QUE EL ADMIN SE ELIMINE A SÍ MISMO
-     */
+
 
     if ($id === (int) $_SESSION["user_id"]) {
 
@@ -817,11 +730,7 @@ if ($method === "DELETE") {
     }
 }
 
-/**
- * ============================================================
- * MÉTODO NO PERMITIDO
- * ============================================================
- */
+
 
 http_response_code(405);
 

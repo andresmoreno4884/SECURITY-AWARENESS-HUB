@@ -1,21 +1,15 @@
-/* ============================================================
-   SECURITY AWARENESS HUB
-   GESTIÓN DE USUARIOS
-   usuarios.js
-   ============================================================ */
+<?php header('Content-Type: application/javascript; charset=UTF-8'); ?>
+
+
 
 function inicializarUsuarios() {
 
-    /* ========================================================
-       CONFIGURACIÓN
-    ======================================================== */
+
 
     const API_URL = "../../backend/Api/usuarios.php";
 
 
-    /* ========================================================
-       ELEMENTOS DEL DOM
-    ======================================================== */
+
 
     const tablaBody =
         document.getElementById("usuariosTableBody");
@@ -90,9 +84,7 @@ function inicializarUsuarios() {
         document.getElementById("paginaSiguiente");
 
 
-    /* ========================================================
-       VALIDAR ELEMENTOS
-    ======================================================== */
+
 
     if (
         !tablaBody ||
@@ -122,16 +114,14 @@ function inicializarUsuarios() {
     ) {
 
         console.error(
-            "usuarios.js: No se encontraron todos los elementos necesarios de la vista Usuarios."
+            "usuarios.php: No se encontraron todos los elementos necesarios de la vista Usuarios."
         );
 
         return;
     }
 
 
-    /* ========================================================
-       ESTADO
-    ======================================================== */
+
 
     let usuarios = [];
 
@@ -144,9 +134,7 @@ function inicializarUsuarios() {
     let temporizadorBusqueda = null;
 
 
-    /* ========================================================
-       OBTENER JSON
-    ======================================================== */
+
 
     async function obtenerRespuestaJSON(response) {
 
@@ -170,10 +158,7 @@ function inicializarUsuarios() {
     }
 
 
-    /* ========================================================
-       ESCAPAR HTML
-       Evita insertar contenido inseguro
-    ======================================================== */
+
 
     function escapeHTML(valor) {
 
@@ -194,9 +179,7 @@ function inicializarUsuarios() {
     }
 
 
-    /* ========================================================
-       MOSTRAR CARGANDO
-    ======================================================== */
+
 
     function mostrarCargando() {
 
@@ -216,9 +199,7 @@ function inicializarUsuarios() {
     }
 
 
-    /* ========================================================
-       CARGAR USUARIOS DESDE PHP
-    ======================================================== */
+
 
     async function cargarUsuarios() {
 
@@ -347,9 +328,7 @@ function inicializarUsuarios() {
     }
 
 
-    /* ========================================================
-       PAGINACIÓN
-    ======================================================== */
+
 
     function aplicarPaginacion() {
 
@@ -412,9 +391,7 @@ function inicializarUsuarios() {
     }
 
 
-    /* ========================================================
-       RENDERIZAR TABLA
-    ======================================================== */
+
 
     function renderizarUsuarios(lista) {
 
@@ -597,9 +574,7 @@ function inicializarUsuarios() {
     }
 
 
-    /* ========================================================
-       INICIALES
-    ======================================================== */
+
 
     function obtenerIniciales(
         nombres = "",
@@ -625,9 +600,7 @@ function inicializarUsuarios() {
     }
 
 
-    /* ========================================================
-       FORMATEAR FECHA
-    ======================================================== */
+
 
     function formatearFecha(fecha) {
 
@@ -665,9 +638,7 @@ function inicializarUsuarios() {
     }
 
 
-    /* ========================================================
-       CONTADORES
-    ======================================================== */
+
 
     function actualizarContadores(
         total,
@@ -710,9 +681,7 @@ function inicializarUsuarios() {
     }
 
 
-    /* ========================================================
-       BOTONES PAGINACIÓN
-    ======================================================== */
+
 
     function actualizarBotonesPaginacion(
         totalPaginas
@@ -731,9 +700,7 @@ function inicializarUsuarios() {
     }
 
 
-    /* ========================================================
-       ABRIR MODAL NUEVO
-    ======================================================== */
+
 
     function abrirModalNuevoUsuario() {
 
@@ -784,9 +751,7 @@ function inicializarUsuarios() {
     }
 
 
-    /* ========================================================
-       ABRIR MODAL EDITAR
-    ======================================================== */
+
 
     function abrirModalEditarUsuario(
         usuario
@@ -852,9 +817,7 @@ function inicializarUsuarios() {
     }
 
 
-    /* ========================================================
-       CERRAR MODAL
-    ======================================================== */
+
 
     function cerrarModalUsuario() {
 
@@ -871,9 +834,7 @@ function inicializarUsuarios() {
     }
 
 
-    /* ========================================================
-       MENSAJE DEL FORMULARIO
-    ======================================================== */
+
 
     function mostrarMensajeFormulario(
         mensaje,
@@ -900,9 +861,7 @@ function inicializarUsuarios() {
     }
 
 
-    /* ========================================================
-       BLOQUEAR FORMULARIO
-    ======================================================== */
+
 
     function bloquearFormulario(
         bloquear
@@ -930,9 +889,7 @@ function inicializarUsuarios() {
     }
 
 
-    /* ========================================================
-       CREAR USUARIO
-    ======================================================== */
+
 
     async function crearUsuario(datos) {
 
@@ -1020,9 +977,7 @@ function inicializarUsuarios() {
     }
 
 
-    /* ========================================================
-       ACTUALIZAR USUARIO
-    ======================================================== */
+
 
     async function editarUsuario(
         id,
@@ -1116,9 +1071,7 @@ function inicializarUsuarios() {
     }
 
 
-    /* ========================================================
-       CAMBIAR ESTADO
-    ======================================================== */
+
 
     async function cambiarEstado(
         usuario
@@ -1217,9 +1170,7 @@ function inicializarUsuarios() {
     }
 
 
-    /* ========================================================
-       ELIMINAR USUARIO
-    ======================================================== */
+
 
     async function eliminarUsuario(
         usuario
@@ -1308,9 +1259,7 @@ function inicializarUsuarios() {
     }
 
 
-    /* ========================================================
-       EVENTOS DE TABLA
-    ======================================================== */
+
 
     tablaBody.addEventListener(
         "click",
@@ -1383,9 +1332,7 @@ function inicializarUsuarios() {
     );
 
 
-    /* ========================================================
-       NUEVO USUARIO
-    ======================================================== */
+
 
     btnNuevoUsuario.addEventListener(
         "click",
@@ -1397,9 +1344,7 @@ function inicializarUsuarios() {
     );
 
 
-    /* ========================================================
-       CERRAR MODAL
-    ======================================================== */
+
 
     cerrarUsuarioModal.addEventListener(
         "click",
@@ -1428,9 +1373,7 @@ function inicializarUsuarios() {
     }
 
 
-    /* ========================================================
-       FORMULARIO
-    ======================================================== */
+
 
     formUsuario.addEventListener(
         "submit",
@@ -1520,9 +1463,7 @@ function inicializarUsuarios() {
     );
 
 
-    /* ========================================================
-       BUSCADOR
-    ======================================================== */
+
 
     buscarUsuario.addEventListener(
         "input",
@@ -1546,9 +1487,7 @@ function inicializarUsuarios() {
     );
 
 
-    /* ========================================================
-       FILTRO ESTADO
-    ======================================================== */
+
 
     filtroEstado.addEventListener(
         "change",
@@ -1560,9 +1499,7 @@ function inicializarUsuarios() {
     );
 
 
-    /* ========================================================
-       FILTRO ROL
-    ======================================================== */
+
 
     filtroRol.addEventListener(
         "change",
@@ -1574,9 +1511,7 @@ function inicializarUsuarios() {
     );
 
 
-    /* ========================================================
-       PÁGINA ANTERIOR
-    ======================================================== */
+
 
     paginaAnterior.addEventListener(
         "click",
@@ -1592,9 +1527,7 @@ function inicializarUsuarios() {
     );
 
 
-    /* ========================================================
-       PÁGINA SIGUIENTE
-    ======================================================== */
+
 
     paginaSiguiente.addEventListener(
         "click",
@@ -1623,9 +1556,7 @@ function inicializarUsuarios() {
     );
 
 
-    /* ========================================================
-       ESCAPE
-    ======================================================== */
+
 
     document.addEventListener(
         "keydown",
@@ -1642,19 +1573,14 @@ function inicializarUsuarios() {
     );
 
 
-    /* ========================================================
-       INICIALIZAR
-    ======================================================== */
+
 
     cargarUsuarios();
 
 }
 
 
-/* ============================================================
-   INICIALIZACIÓN
-   COMPATIBLE CON CARGA DINÁMICA DEL PANEL
-============================================================ */
+
 
 if (document.readyState === "loading") {
 

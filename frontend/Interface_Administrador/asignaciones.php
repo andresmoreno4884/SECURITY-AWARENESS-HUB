@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/../includes/page_context.php'; ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -7,22 +8,17 @@
 
     <title>Asignaciones | Security Awareness Hub</title>
 
-    <!-- CSS -->
+
     <link rel="stylesheet" href="css/asignaciones.css">
 </head>
 
 <body>
 
-    <!-- =====================================================
-         ASIGNACIONES
-         SECURITY AWARENESS HUB
-         ===================================================== -->
+
 
     <section class="admin-view">
 
-        <!-- =================================================
-             ENCABEZADO
-             ================================================= -->
+
 
         <div class="dashboard-heading">
 
@@ -59,13 +55,11 @@
         </div>
 
 
-        <!-- =================================================
-             INDICADORES
-             ================================================= -->
+
 
         <div class="dashboard-cards">
 
-            <!-- ASIGNACIONES -->
+
 
             <div class="dashboard-card">
 
@@ -92,7 +86,7 @@
             </div>
 
 
-            <!-- ACTIVAS -->
+
 
             <div class="dashboard-card">
 
@@ -119,7 +113,7 @@
             </div>
 
 
-            <!-- COMPLETADAS -->
+
 
             <div class="dashboard-card">
 
@@ -148,13 +142,11 @@
         </div>
 
 
-        <!-- =================================================
-             FILTROS
-             ================================================= -->
+
 
         <div class="users-toolbar">
 
-            <!-- BUSCADOR -->
+
 
             <div class="search-box">
 
@@ -171,7 +163,7 @@
             </div>
 
 
-            <!-- ESTADO -->
+
 
             <select
                 class="users-filter"
@@ -197,7 +189,7 @@
             </select>
 
 
-            <!-- TIPO -->
+
 
             <select
                 class="users-filter"
@@ -221,13 +213,11 @@
         </div>
 
 
-        <!-- =================================================
-             DIRECTORIO DE ASIGNACIONES
-             ================================================= -->
+
 
         <div class="dashboard-card users-table-card">
 
-            <!-- HEADER -->
+
 
             <div class="card-header">
 
@@ -254,9 +244,7 @@
             </div>
 
 
-            <!-- =================================================
-                 TABLA
-                 ================================================= -->
+
 
             <div class="table-wrapper">
 
@@ -295,14 +283,7 @@
                     </thead>
 
 
-                    <!--
-                        IMPORTANTE:
 
-                        Este tbody comienza vacío.
-
-                        Los datos serán cargados posteriormente
-                        mediante JavaScript + PHP + JSON + MySQL.
-                    -->
 
                     <tbody id="asignacionesTableBody">
 
@@ -325,9 +306,7 @@
             </div>
 
 
-            <!-- =================================================
-                 FOOTER TABLA
-                 ================================================= -->
+
 
             <div class="table-footer">
 
@@ -378,16 +357,14 @@
         </div>
 
 
-        <!-- =================================================
-             MODAL NUEVA ASIGNACIÓN
-             ================================================= -->
+
 
         <div
             class="user-modal"
             id="asignacionModal"
             hidden>
 
-            <!-- OVERLAY -->
+
 
             <div
                 class="user-modal-overlay"
@@ -395,7 +372,7 @@
             </div>
 
 
-            <!-- CONTENIDO -->
+
 
             <div
                 class="user-modal-content"
@@ -404,9 +381,7 @@
                 aria-labelledby="modalAsignacionTitulo">
 
 
-                <!-- =================================================
-                     HEADER MODAL
-                     ================================================= -->
+
 
                 <div class="user-modal-header">
 
@@ -436,20 +411,18 @@
                 </div>
 
 
-                <!-- =================================================
-                     FORMULARIO
-                     ================================================= -->
+
 
                 <form id="formAsignacion">
 
-                    <!-- ID OCULTO -->
+
 
                     <input
                         type="hidden"
                         id="asignacionId">
 
 
-                    <!-- USUARIO -->
+
 
                     <div class="form-group">
 
@@ -472,7 +445,7 @@
                     </div>
 
 
-                    <!-- CURSO -->
+
 
                     <div class="form-group">
 
@@ -495,7 +468,7 @@
                     </div>
 
 
-                    <!-- TIPO -->
+
 
                     <div class="form-group">
 
@@ -522,7 +495,7 @@
                     </div>
 
 
-                    <!-- FECHA -->
+
 
                     <div class="form-group">
 
@@ -539,7 +512,7 @@
                     </div>
 
 
-                    <!-- ESTADO -->
+
 
                     <div class="form-group">
 
@@ -570,7 +543,7 @@
                     </div>
 
 
-                    <!-- MENSAJE -->
+
 
                     <div
                         id="asignacionFormMessage"
@@ -579,9 +552,7 @@
                     </div>
 
 
-                    <!-- =================================================
-                         BOTONES
-                         ================================================= -->
+
 
                     <div class="user-modal-actions">
 

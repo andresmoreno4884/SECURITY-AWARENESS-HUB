@@ -1,11 +1,6 @@
 <?php
 
-/**
- * ============================================================
- * SECURITY AWARENESS HUB
- * PRUEBA DE CONEXIÓN
- * ============================================================
- */
+
 
 header("Content-Type: application/json; charset=UTF-8");
 

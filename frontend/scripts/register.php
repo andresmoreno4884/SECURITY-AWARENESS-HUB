@@ -1,8 +1,6 @@
-/* =====================================================
-   SECURITY AWARENESS HUB
-   REGISTRO DE USUARIO
-   CONEXIÓN PHP + MYSQL + JSON
-===================================================== */
+<?php header('Content-Type: application/javascript; charset=UTF-8'); ?>
+
+
 
 const registerForm = document.getElementById("registerForm");
 const message = document.getElementById("message");
@@ -11,9 +9,7 @@ registerForm.addEventListener("submit", async function (event) {
 
     event.preventDefault();
 
-    /* =================================================
-       OBTENER DATOS
-    ================================================= */
+
 
     const nombres = document
         .getElementById("nombres")
@@ -39,16 +35,12 @@ registerForm.addEventListener("submit", async function (event) {
         .getElementById("confirmPassword")
         .value;
 
-    /* =================================================
-       LIMPIAR MENSAJE
-    ================================================= */
+
 
     message.textContent = "";
     message.className = "";
 
-    /* =================================================
-       VALIDAR CAMPOS
-    ================================================= */
+
 
     if (
         !nombres ||
@@ -66,9 +58,7 @@ registerForm.addEventListener("submit", async function (event) {
         return;
     }
 
-    /* =================================================
-       VALIDAR NOMBRES
-    ================================================= */
+
 
     if (nombres.length < 2) {
 
@@ -80,9 +70,7 @@ registerForm.addEventListener("submit", async function (event) {
         return;
     }
 
-    /* =================================================
-       VALIDAR APELLIDOS
-    ================================================= */
+
 
     if (apellidos.length < 2) {
 
@@ -94,9 +82,7 @@ registerForm.addEventListener("submit", async function (event) {
         return;
     }
 
-    /* =================================================
-       VALIDAR CORREO
-    ================================================= */
+
 
     const emailRegex =
         /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -111,9 +97,7 @@ registerForm.addEventListener("submit", async function (event) {
         return;
     }
 
-    /* =================================================
-       VALIDAR CONTRASEÑA
-    ================================================= */
+
 
     if (password.length < 8) {
 
@@ -125,9 +109,7 @@ registerForm.addEventListener("submit", async function (event) {
         return;
     }
 
-    /* =================================================
-       CONFIRMAR CONTRASEÑA
-    ================================================= */
+
 
     if (password !== confirmPassword) {
 
@@ -139,9 +121,7 @@ registerForm.addEventListener("submit", async function (event) {
         return;
     }
 
-    /* =================================================
-       BOTÓN
-    ================================================= */
+
 
     const registerButton =
         registerForm.querySelector(".register-button");
@@ -151,9 +131,7 @@ registerForm.addEventListener("submit", async function (event) {
     registerButton.textContent =
         "Creando cuenta...";
 
-    /* =================================================
-       DATOS PARA PHP
-    ================================================= */
+
 
     const userData = {
 
@@ -169,9 +147,7 @@ registerForm.addEventListener("submit", async function (event) {
 
     try {
 
-        /* =============================================
-           ENVIAR DATOS A PHP
-        ============================================= */
+
 
         const response = await fetch(
             "../../backend/Api/register.php",
@@ -186,15 +162,11 @@ registerForm.addEventListener("submit", async function (event) {
             }
         );
 
-        /* =============================================
-           RECIBIR RESPUESTA
-        ============================================= */
+
 
         const data = await response.json();
 
-        /* =============================================
-           COMPROBAR RESPUESTA
-        ============================================= */
+
 
         if (!response.ok || !data.success) {
 
@@ -212,9 +184,7 @@ registerForm.addEventListener("submit", async function (event) {
             return;
         }
 
-        /* =============================================
-           REGISTRO EXITOSO
-        ============================================= */
+
 
         showMessage(
             data.message ||
@@ -222,14 +192,12 @@ registerForm.addEventListener("submit", async function (event) {
             "success"
         );
 
-        /* =============================================
-           REDIRIGIR AL LOGIN
-        ============================================= */
+
 
         setTimeout(() => {
 
             window.location.href =
-                "login.html";
+                "login.php";
 
         }, 1500);
 
@@ -254,9 +222,7 @@ registerForm.addEventListener("submit", async function (event) {
 });
 
 
-/* =====================================================
-   MOSTRAR MENSAJE
-===================================================== */
+
 
 function showMessage(text, type) {
 

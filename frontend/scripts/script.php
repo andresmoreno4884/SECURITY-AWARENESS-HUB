@@ -1,37 +1,14 @@
-/* =========================================================
-   SECURITY AWARENESS HUB
-   LANDING PAGE - SCRIPT PRINCIPAL
-   =========================================================
-
-   Este archivo controla únicamente la Landing Page.
-
-   Estructura:
-
-   Landing Page
-        ↓
-   Login / Registro
-        ↓
-   Sistema de autenticación
-        ↓
-   Backend / API
-        ↓
-   Base de datos
-
-   Actualmente la autenticación se encuentra preparada
-   para trabajar con el frontend existente.
-   ========================================================= */
+<?php header('Content-Type: application/javascript; charset=UTF-8'); ?>
 
 
-/* =========================================================
-   CONFIGURACIÓN
-   ========================================================= */
+
+
+
 
 const API_BASE_URL = "http://localhost:3000/api";
 
 
-/* =========================================================
-   INICIALIZACIÓN
-   ========================================================= */
+
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -48,18 +25,11 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-/* =========================================================
-   NAVEGACIÓN
-   ========================================================= */
+
 
 function inicializarNavegacion() {
 
-    /*
-     * Buscamos los enlaces que tengan la clase "nav-link".
-     *
-     * Si alguno apunta a una sección de la misma página,
-     * hacemos desplazamiento suave.
-     */
+
 
     const navLinks = document.querySelectorAll(
         'a[href^="#"]'
@@ -100,17 +70,11 @@ function inicializarNavegacion() {
 }
 
 
-/* =========================================================
-   SCROLL
-   ========================================================= */
+
 
 function inicializarScroll() {
 
-    /*
-     * Detectamos cuando el usuario baja por la página.
-     *
-     * Esto permite agregar posteriormente efectos al header.
-     */
+
 
     window.addEventListener("scroll", function () {
 
@@ -136,20 +100,11 @@ function inicializarScroll() {
 }
 
 
-/* =========================================================
-   ANIMACIONES DE ENTRADA
-   ========================================================= */
+
 
 function inicializarAnimaciones() {
 
-    /*
-     * Elementos que tengan la clase:
-     *
-     * .reveal
-     *
-     * podrán mostrar una animación cuando entren
-     * en pantalla.
-     */
+
 
     const elements =
         document.querySelectorAll(".reveal");
@@ -159,10 +114,7 @@ function inicializarAnimaciones() {
     }
 
 
-    /*
-     * IntersectionObserver permite detectar cuando
-     * un elemento aparece dentro de la pantalla.
-     */
+
 
     const observer =
         new IntersectionObserver(
@@ -203,19 +155,11 @@ function inicializarAnimaciones() {
 }
 
 
-/* =========================================================
-   BOTONES PRINCIPALES
-   ========================================================= */
+
 
 function inicializarBotones() {
 
-    /*
-     * Botones que tengan alguno de estos atributos
-     * pueden utilizar la navegación automáticamente.
-     *
-     * data-action="login"
-     * data-action="register"
-     */
+
 
     const loginButtons =
         document.querySelectorAll(
@@ -228,9 +172,7 @@ function inicializarBotones() {
         );
 
 
-    /* =====================================================
-       BOTONES LOGIN
-       ===================================================== */
+
 
     loginButtons.forEach(function (button) {
 
@@ -239,7 +181,7 @@ function inicializarBotones() {
             function () {
 
                 window.location.href =
-                    "../authentication/login.html";
+                    "../authentication/login.php";
 
             }
         );
@@ -247,9 +189,7 @@ function inicializarBotones() {
     });
 
 
-    /* =====================================================
-       BOTONES REGISTRO
-       ===================================================== */
+
 
     registerButtons.forEach(function (button) {
 
@@ -258,7 +198,7 @@ function inicializarBotones() {
             function () {
 
                 window.location.href =
-                    "../authentication/register.html";
+                    "../authentication/register.php";
 
             }
         );
@@ -268,24 +208,17 @@ function inicializarBotones() {
 }
 
 
-/* =========================================================
-   SESIÓN
-   ========================================================= */
+
 
 function obtenerSesion() {
 
-    /*
-     * Primero intentamos obtener la sesión de
-     * localStorage.
-     */
+
 
     let session =
         localStorage.getItem("sah_user");
 
 
-    /*
-     * Si no existe, buscamos en sessionStorage.
-     */
+
 
     if (!session) {
 
@@ -295,19 +228,14 @@ function obtenerSesion() {
     }
 
 
-    /*
-     * Si no existe ninguna sesión:
-     */
+
 
     if (!session) {
         return null;
     }
 
 
-    /*
-     * Intentamos convertir la información
-     * almacenada a objeto JavaScript.
-     */
+
 
     try {
 
@@ -327,9 +255,7 @@ function obtenerSesion() {
 }
 
 
-/* =========================================================
-   VERIFICAR SESIÓN
-   ========================================================= */
+
 
 function usuarioEstaAutenticado() {
 
@@ -341,15 +267,11 @@ function usuarioEstaAutenticado() {
 }
 
 
-/* =========================================================
-   CERRAR SESIÓN
-   ========================================================= */
+
 
 function cerrarSesion() {
 
-    /*
-     * Eliminamos las posibles sesiones guardadas.
-     */
+
 
     localStorage.removeItem(
         "sah_user"
@@ -360,52 +282,35 @@ function cerrarSesion() {
     );
 
 
-    /*
-     * Después de cerrar sesión regresamos
-     * a la Landing Page.
-     */
+
 
     window.location.href =
-        "index.html";
+        "index.php";
 
 }
 
 
-/* =========================================================
-   NAVEGAR AL LOGIN
-   ========================================================= */
+
 
 function irAlLogin() {
 
     window.location.href =
-        "../authentication/login.html";
+        "../authentication/login.php";
 
 }
 
 
-/* =========================================================
-   NAVEGAR AL REGISTRO
-   ========================================================= */
+
 
 function irAlRegistro() {
 
     window.location.href =
-        "../authentication/register.html";
+        "../authentication/register.php";
 
 }
 
 
-/* =========================================================
-   COMPROBAR API
-   =========================================================
 
-   Esta función NO se ejecuta automáticamente.
-
-   Queda preparada para cuando tengamos el backend
-   funcionando en:
-
-   http://localhost:3000/api
-   ========================================================= */
 
 async function comprobarAPI() {
 
@@ -448,9 +353,7 @@ async function comprobarAPI() {
 }
 
 
-/* =========================================================
-   CONTROL DE BOTONES SEGÚN SESIÓN
-   ========================================================= */
+
 
 function actualizarEstadoSesion() {
 
@@ -458,12 +361,7 @@ function actualizarEstadoSesion() {
         obtenerSesion();
 
 
-    /*
-     * Elementos opcionales.
-     *
-     * Si existen en el HTML, se actualizarán.
-     * Si no existen, no ocurre ningún error.
-     */
+
 
     const loginButtons =
         document.querySelectorAll(
@@ -486,9 +384,7 @@ function actualizarEstadoSesion() {
         );
 
 
-    /*
-     * Si existe sesión:
-     */
+
 
     if (session) {
 
@@ -510,10 +406,7 @@ function actualizarEstadoSesion() {
             }
         );
 
-        /*
-         * Login y registro pueden ocultarse
-         * cuando ya existe una sesión.
-         */
+
 
         loginButtons.forEach(
             function (button) {
@@ -535,9 +428,7 @@ function actualizarEstadoSesion() {
 
     } else {
 
-        /*
-         * Si no existe sesión:
-         */
+
 
         dashboardButtons.forEach(
             function (button) {
@@ -562,9 +453,7 @@ function actualizarEstadoSesion() {
 }
 
 
-/* =========================================================
-   BOTÓN DASHBOARD
-   ========================================================= */
+
 
 document.addEventListener(
     "click",
@@ -592,21 +481,13 @@ document.addEventListener(
 
         }
 
-        /*
-         * No inventamos todavía una ruta del dashboard.
-         *
-         * Cuando actualicemos Interface_User /
-         * Interface_Administrador definiremos
-         * la redirección correspondiente.
-         */
+
 
     }
 );
 
 
-/* =========================================================
-   BOTÓN CERRAR SESIÓN
-   ========================================================= */
+
 
 document.addEventListener(
     "click",
@@ -629,9 +510,7 @@ document.addEventListener(
 );
 
 
-/* =========================================================
-   ACTUALIZAR ESTADO AL CARGAR
-   ========================================================= */
+
 
 document.addEventListener(
     "DOMContentLoaded",
@@ -643,20 +522,7 @@ document.addEventListener(
 );
 
 
-/* =========================================================
-   EXPORTACIÓN GLOBAL
-   =========================================================
 
-   Estas funciones quedan disponibles para que
-   posteriormente podamos utilizarlas desde HTML
-   si es necesario.
-
-   Ejemplo:
-
-   onclick="irAlLogin()"
-   onclick="irAlRegistro()"
-   onclick="cerrarSesion()"
-   ========================================================= */
 
 window.irAlLogin =
     irAlLogin;

@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/../includes/page_context.php'; ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -13,7 +14,7 @@
         Resultados | Security Awareness Hub
     </title>
 
-    <!-- CSS específico de resultados -->
+
     <link
         rel="stylesheet"
         href="css/resultados.css">
@@ -22,17 +23,12 @@
 
 <body>
 
-    <!-- =====================================================
-         RESULTADOS
-         SECURITY AWARENESS HUB
-    ====================================================== -->
+
 
     <section class="admin-view">
 
 
-        <!-- =================================================
-             ENCABEZADO
-        ================================================== -->
+
 
         <div class="dashboard-heading">
 
@@ -56,14 +52,12 @@
         </div>
 
 
-        <!-- =================================================
-             INDICADORES
-        ================================================== -->
+
 
         <div class="dashboard-cards">
 
 
-            <!-- EVALUACIONES REALIZADAS -->
+
 
             <div class="dashboard-card">
 
@@ -90,7 +84,7 @@
             </div>
 
 
-            <!-- PROMEDIO GENERAL -->
+
 
             <div class="dashboard-card">
 
@@ -117,7 +111,7 @@
             </div>
 
 
-            <!-- APROBADOS -->
+
 
             <div class="dashboard-card">
 
@@ -146,9 +140,7 @@
         </div>
 
 
-        <!-- =================================================
-             FILTROS
-        ================================================== -->
+
 
         <div class="dashboard-panel">
 
@@ -172,7 +164,7 @@
             <div class="report-filters">
 
 
-                <!-- BUSCADOR -->
+
 
                 <div class="form-group">
 
@@ -190,7 +182,7 @@
                 </div>
 
 
-                <!-- CURSO -->
+
 
                 <div class="form-group">
 
@@ -212,7 +204,7 @@
                 </div>
 
 
-                <!-- EVALUACIÓN -->
+
 
                 <div class="form-group">
 
@@ -234,7 +226,7 @@
                 </div>
 
 
-                <!-- ESTADO -->
+
 
                 <div class="form-group">
 
@@ -264,7 +256,7 @@
                 </div>
 
 
-                <!-- BOTÓN -->
+
 
                 <button
                     type="button"
@@ -280,14 +272,12 @@
         </div>
 
 
-        <!-- =================================================
-             TABLA DE RESULTADOS
-        ================================================== -->
+
 
         <div class="dashboard-card users-table-card">
 
 
-            <!-- HEADER -->
+
 
             <div class="card-header">
 
@@ -315,9 +305,7 @@
             </div>
 
 
-            <!-- =================================================
-                 TABLA
-            ================================================== -->
+
 
             <div class="table-wrapper">
 
@@ -360,14 +348,7 @@
                     </thead>
 
 
-                    <!--
-                        IMPORTANTE:
 
-                        Este tbody comienza vacío.
-
-                        Los resultados serán cargados posteriormente
-                        desde MySQL mediante PHP + JSON.
-                    -->
 
                     <tbody id="resultadosTableBody">
 
@@ -390,9 +371,7 @@
             </div>
 
 
-            <!-- =================================================
-                 FOOTER DE TABLA
-            ================================================== -->
+
 
             <div class="table-footer">
 
@@ -441,9 +420,7 @@
         </div>
 
 
-        <!-- =================================================
-             ESTADO VACÍO
-        ================================================== -->
+
 
         <div
             class="dashboard-panel"
@@ -470,9 +447,7 @@
         </div>
 
 
-        <!-- =================================================
-             DETALLE DEL RESULTADO
-        ================================================== -->
+
 
         <div
             class="user-modal"
@@ -489,7 +464,7 @@
                 aria-labelledby="modalResultadoTitulo">
 
 
-                <!-- HEADER -->
+
 
                 <div class="user-modal-header">
 
@@ -519,7 +494,7 @@
                 </div>
 
 
-                <!-- INFORMACIÓN -->
+
 
                 <div class="result-detail">
 
@@ -604,7 +579,7 @@
                 </div>
 
 
-                <!-- BOTÓN CERRAR -->
+
 
                 <div class="user-modal-actions">
 

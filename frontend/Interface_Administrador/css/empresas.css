@@ -1,14 +1,4 @@
-/* ============================================================
-   SECURITY AWARENESS HUB
-   EMPRESAS - ESTILOS DEL PANEL ADMINISTRADOR
-   ============================================================ */
-
-
-/* ============================================================
-   VARIABLES
-   ============================================================ */
-
-   :root {
+:root {
     --bg-main: #020605;
     --bg-panel: #04100b;
     --bg-card: #06150e;
@@ -39,9 +29,7 @@
 }
 
 
-/* ============================================================
-   RESET
-   ============================================================ */
+
 
 * {
     box-sizing: border-box;
@@ -56,11 +44,9 @@ body {
     padding: 0;
 
     background:
-        radial-gradient(
-            circle at 50% 0%,
+        radial-gradient(circle at 50% 0%,
             rgba(0, 255, 136, 0.035),
-            transparent 38%
-        ),
+            transparent 38%),
         var(--bg-main);
 
     color: var(--text-main);
@@ -76,9 +62,7 @@ body {
 }
 
 
-/* ============================================================
-   CONTENEDOR PRINCIPAL
-   ============================================================ */
+
 
 .admin-view {
     width: min(100% - 48px, 1020px);
@@ -86,14 +70,11 @@ body {
     margin: 0 auto;
 
     padding:
-        46px 0
-        70px;
+        46px 0 70px;
 }
 
 
-/* ============================================================
-   ENCABEZADO
-   ============================================================ */
+
 
 .dashboard-heading {
     position: relative;
@@ -140,9 +121,7 @@ body {
 }
 
 
-/* ============================================================
-   ACCIONES
-   ============================================================ */
+
 
 .admin-actions {
     display: flex;
@@ -195,15 +174,13 @@ body {
 }
 
 
-/* ============================================================
-   TARJETAS DE ESTADÍSTICAS
-   ============================================================ */
+
 
 .dashboard-cards {
     display: grid;
 
     grid-template-columns:
-        repeat(4, minmax(0, 1fr));
+        repeat(3, minmax(0, 1fr));
 
     gap: 14px;
 
@@ -211,10 +188,7 @@ body {
 }
 
 
-/*
-   Si Empresas utiliza solamente 4 estadísticas,
-   las cuatro quedan perfectamente distribuidas.
-*/
+
 
 .dashboard-card {
     position: relative;
@@ -223,18 +197,18 @@ body {
 
     display: flex;
 
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
 
-    gap: 14px;
+    gap: 8px;
 
     padding: 17px;
 
     background:
-        linear-gradient(
-            145deg,
+        linear-gradient(145deg,
             rgba(6, 21, 14, 0.98),
-            rgba(3, 13, 9, 0.98)
-        );
+            rgba(3, 13, 9, 0.98));
 
     border: 1px solid var(--green-border);
 
@@ -259,9 +233,7 @@ body {
 }
 
 
-/* ============================================================
-   ICONOS DE ESTADÍSTICAS
-   ============================================================ */
+
 
 .card-icon {
     flex: 0 0 42px;
@@ -287,12 +259,12 @@ body {
 }
 
 
-/* ============================================================
-   TEXTO DE LAS ESTADÍSTICAS
-   ============================================================ */
 
-.dashboard-card > div:last-child {
+
+.dashboard-card>div:last-child {
     min-width: 0;
+
+    text-align: center;
 }
 
 .dashboard-card span {
@@ -334,16 +306,13 @@ body {
 }
 
 
-/* ============================================================
-   FILTROS
-   ============================================================ */
+
 
 .admin-filters {
     display: grid;
 
     grid-template-columns:
-        minmax(0, 1fr)
-        160px;
+        minmax(0, 1fr) 160px;
 
     gap: 10px;
 
@@ -351,7 +320,7 @@ body {
 }
 
 
-/* BUSCADOR */
+
 
 .search-box {
     position: relative;
@@ -421,7 +390,7 @@ body {
 }
 
 
-/* SELECT */
+
 
 .admin-filters select,
 .filter-select,
@@ -478,19 +447,15 @@ select option {
 }
 
 
-/* ============================================================
-   PANEL PRINCIPAL
-   ============================================================ */
+
 
 .dashboard-panel {
     overflow: hidden;
 
     background:
-        linear-gradient(
-            145deg,
+        linear-gradient(145deg,
             rgba(5, 18, 12, 0.98),
-            rgba(2, 10, 7, 0.98)
-        );
+            rgba(2, 10, 7, 0.98));
 
     border:
         1px solid var(--green-border);
@@ -501,9 +466,7 @@ select option {
 }
 
 
-/* ============================================================
-   CABECERA DEL PANEL
-   ============================================================ */
+
 
 .panel-header {
     min-height: 88px;
@@ -531,9 +494,7 @@ select option {
 }
 
 
-/* ============================================================
-   ESTADO DE CARGA
-   ============================================================ */
+
 
 .loading-status {
     display: inline-flex;
@@ -560,9 +521,7 @@ select option {
 }
 
 
-/* ============================================================
-   TABLA
-   ============================================================ */
+
 
 .table-container {
     width: 100%;
@@ -633,9 +592,7 @@ select option {
 }
 
 
-/* ============================================================
-   ESTADO VACÍO
-   ============================================================ */
+
 
 .empty-state {
     min-height: 290px;
@@ -697,9 +654,7 @@ select option {
 }
 
 
-/* ============================================================
-   BOTÓN DEL ESTADO VACÍO
-   ============================================================ */
+
 
 .empty-state .admin-button {
     min-height: 38px;
@@ -710,9 +665,7 @@ select option {
 }
 
 
-/* ============================================================
-   PAGINACIÓN
-   ============================================================ */
+
 
 .pagination {
     min-height: 58px;
@@ -786,9 +739,7 @@ select option {
 }
 
 
-/* ============================================================
-   BADGES DE ESTADO
-   ============================================================ */
+
 
 .status-badge {
     display: inline-flex;
@@ -828,9 +779,7 @@ select option {
 }
 
 
-/* ============================================================
-   PROGRESO
-   ============================================================ */
+
 
 .progress-wrapper {
     display: flex;
@@ -872,9 +821,7 @@ select option {
 }
 
 
-/* ============================================================
-   ACCIONES DE TABLA
-   ============================================================ */
+
 
 .table-actions {
     display: flex;
@@ -921,9 +868,7 @@ select option {
 }
 
 
-/* ============================================================
-   RESPONSIVE - TABLET
-   ============================================================ */
+
 
 @media (max-width: 900px) {
 
@@ -955,9 +900,7 @@ select option {
 }
 
 
-/* ============================================================
-   RESPONSIVE - CELULAR
-   ============================================================ */
+
 
 @media (max-width: 600px) {
 
@@ -965,8 +908,7 @@ select option {
         width: min(100% - 24px, 500px);
 
         padding:
-            28px 0
-            45px;
+            28px 0 45px;
     }
 
     .dashboard-heading {
@@ -1035,9 +977,7 @@ select option {
 }
 
 
-/* ============================================================
-   REDUCED MOTION
-   ============================================================ */
+
 
 @media (prefers-reduced-motion: reduce) {
 

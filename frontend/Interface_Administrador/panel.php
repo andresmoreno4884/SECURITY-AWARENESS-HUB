@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/../includes/page_context.php'; ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -13,7 +14,7 @@
         Panel Administrador | Security Awareness Hub
     </title>
 
-    <!-- Estilos generales del panel -->
+
     <link
         rel="stylesheet"
         href="css/Dashboard.css">
@@ -22,22 +23,17 @@
 
 <body>
 
-    <!-- =====================================================
-         PANEL ADMINISTRATIVO
-         SECURITY AWARENESS HUB
-    ====================================================== -->
+
 
     <div class="admin-layout">
 
 
-        <!-- =================================================
-             BARRA LATERAL
-        ================================================== -->
+
 
         <aside class="admin-sidebar">
 
 
-            <!-- LOGO / IDENTIDAD -->
+
 
             <div class="admin-brand">
 
@@ -60,7 +56,7 @@
             </div>
 
 
-            <!-- PERFIL ADMINISTRADOR -->
+
 
             <div class="admin-profile">
 
@@ -83,9 +79,7 @@
             </div>
 
 
-            <!-- =================================================
-                 NAVEGACIÓN
-            ================================================== -->
+
 
             <nav class="admin-navigation">
 
@@ -94,7 +88,7 @@
                 </span>
 
 
-                <!-- DASHBOARD -->
+
 
                 <a
                     href="#dashboard"
@@ -117,7 +111,7 @@
                 </span>
 
 
-                <!-- USUARIOS -->
+
 
                 <a
                     href="#usuarios"
@@ -135,7 +129,7 @@
                 </a>
 
 
-                <!-- EMPRESAS -->
+
 
                 <a
                     href="#empresas"
@@ -153,7 +147,7 @@
                 </a>
 
 
-                <!-- CURSOS -->
+
 
                 <a
                     href="#courses_admin"
@@ -171,7 +165,7 @@
                 </a>
 
 
-                <!-- EVALUACIONES -->
+
 
                 <a
                     href="#evaluaciones"
@@ -189,7 +183,7 @@
                 </a>
 
 
-                <!-- ASIGNACIONES -->
+
 
                 <a
                     href="#asignaciones"
@@ -207,7 +201,7 @@
                 </a>
 
 
-                <!-- RESULTADOS -->
+
 
                 <a
                     href="#resultados"
@@ -225,7 +219,7 @@
                 </a>
 
 
-                <!-- REPORTES -->
+
 
                 <a
                     href="#reportes"
@@ -245,9 +239,7 @@
             </nav>
 
 
-            <!-- =================================================
-                 PARTE INFERIOR
-            ================================================== -->
+
 
             <div class="sidebar-footer">
 
@@ -271,14 +263,12 @@
         </aside>
 
 
-        <!-- =================================================
-             CONTENIDO PRINCIPAL
-        ================================================== -->
+
 
         <main class="admin-main">
 
 
-            <!-- HEADER -->
+
 
             <header class="admin-topbar">
 
@@ -308,15 +298,13 @@
             </header>
 
 
-            <!-- =================================================
-                 CONTENIDO DINÁMICO
-            ================================================== -->
+
 
             <section
                 id="admin-content"
                 class="admin-content">
 
-                <!-- El dashboard se carga inicialmente -->
+
 
             </section>
 
@@ -326,12 +314,10 @@
     </div>
 
 
-    <!-- =====================================================
-         JAVASCRIPT PRINCIPAL
-    ====================================================== -->
+
 
     <script
-        src="js/dashboard.js">
+        src="../scripts/dashboard.php">
     </script>
 
 </body>

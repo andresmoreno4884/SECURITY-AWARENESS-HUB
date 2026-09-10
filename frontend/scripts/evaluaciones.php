@@ -1,14 +1,10 @@
-/* ============================================================
-   SECURITY AWARENESS HUB
-   EVALUACIONES - PANEL ADMINISTRADOR
-   evaluaciones.js
-============================================================ */
+<?php header('Content-Type: application/javascript; charset=UTF-8'); ?>
+
+
 
 (function () {
 
-    /* ========================================================
-       RUTAS DEL BACKEND
-    ======================================================== */
+
 
     const EVALUACIONES_API =
         "../../../backend/Api/evaluaciones.php";
@@ -17,9 +13,7 @@
         "../../../backend/Api/courses.php";
 
 
-    /* ========================================================
-       ESTADO EN MEMORIA
-    ======================================================== */
+
 
     let evaluaciones = [];
     let cursosDisponibles = [];
@@ -29,9 +23,7 @@
     const EVALUACIONES_POR_PAGINA = 8;
 
 
-    /* ========================================================
-       ELEMENTOS PRINCIPALES
-    ======================================================== */
+
 
     const tableBody =
         document.getElementById("evaluacionesTableBody");
@@ -73,9 +65,7 @@
         document.getElementById("paginaActualEvaluacion");
 
 
-    /* ========================================================
-       ELEMENTOS DEL MODAL
-    ======================================================== */
+
 
     const modal =
         document.getElementById("evaluacionModal");
@@ -129,9 +119,7 @@
         document.getElementById("guardarEvaluacion");
 
 
-    /* ========================================================
-       UTILIDADES
-    ======================================================== */
+
 
     function escaparHtml(texto) {
 
@@ -177,9 +165,7 @@
     }
 
 
-    /* ========================================================
-       CARGAR CURSOS (para los <select>)
-    ======================================================== */
+
 
     async function cargarCursos() {
 
@@ -197,7 +183,7 @@
 
             cursosDisponibles = data.cursos || [];
 
-            /* SELECT DEL MODAL */
+
 
             selectCurso.innerHTML =
                 '<option value="">Seleccione un curso</option>';
@@ -214,7 +200,7 @@
 
             });
 
-            /* SELECT DE FILTRO */
+
 
             filtroCurso.innerHTML =
                 '<option value="todos">Todos los cursos</option>';
@@ -243,9 +229,7 @@
     }
 
 
-    /* ========================================================
-       CARGAR EVALUACIONES
-    ======================================================== */
+
 
     async function cargarEvaluaciones() {
 
@@ -307,9 +291,7 @@
     }
 
 
-    /* ========================================================
-       INDICADORES SUPERIORES
-    ======================================================== */
+
 
     function actualizarIndicadores() {
 
@@ -332,9 +314,7 @@
     }
 
 
-    /* ========================================================
-       FILTRAR EVALUACIONES (según buscador y selects)
-    ======================================================== */
+
 
     function obtenerEvaluacionesFiltradas() {
 
@@ -366,9 +346,7 @@
     }
 
 
-    /* ========================================================
-       RENDERIZAR TABLA (con paginación)
-    ======================================================== */
+
 
     function renderizarTabla() {
 
@@ -491,9 +469,7 @@
     }
 
 
-    /* ========================================================
-       PAGINACIÓN - EVENTOS
-    ======================================================== */
+
 
     btnPaginaAnterior.addEventListener("click", () => {
 
@@ -516,9 +492,7 @@
     });
 
 
-    /* ========================================================
-       FILTROS - EVENTOS
-    ======================================================== */
+
 
     buscarInput.addEventListener("input", () => {
 
@@ -545,9 +519,7 @@
     });
 
 
-    /* ========================================================
-       CREAR BLOQUE DE PREGUNTA (HTML dinámico)
-    ======================================================== */
+
 
     function crearBloquePregunta() {
 
@@ -597,7 +569,7 @@
         const opcionesList =
             bloque.querySelector(".opciones-list");
 
-        /* Cada pregunta nueva inicia con 2 opciones vacías */
+
 
         opcionesList.appendChild(
             crearFilaOpcion(grupoRadio)
@@ -607,7 +579,7 @@
             crearFilaOpcion(grupoRadio)
         );
 
-        /* BOTÓN ELIMINAR PREGUNTA */
+
 
         bloque
             .querySelector(".btn-eliminar-pregunta")
@@ -620,7 +592,7 @@
 
             });
 
-        /* BOTÓN AGREGAR OPCIÓN */
+
 
         bloque
             .querySelector(".btn-agregar-opcion")
@@ -637,9 +609,7 @@
     }
 
 
-    /* ========================================================
-       CREAR FILA DE OPCIÓN (HTML dinámico)
-    ======================================================== */
+
 
     function crearFilaOpcion(nombreGrupoRadio) {
 
@@ -673,7 +643,7 @@
 
                 const listaOpciones = fila.parentElement;
 
-                /* No permitir menos de 2 opciones */
+
 
                 if (listaOpciones.children.length <= 2) {
                     return;
@@ -688,9 +658,7 @@
     }
 
 
-    /* ========================================================
-       ACTUALIZAR NUMERACIÓN VISUAL DE PREGUNTAS
-    ======================================================== */
+
 
     function actualizarNumeracionPreguntas() {
 
@@ -709,9 +677,7 @@
     }
 
 
-    /* ========================================================
-       ACTUALIZAR CAMPO "NÚMERO DE PREGUNTAS" (solo lectura)
-    ======================================================== */
+
 
     function actualizarNumeroPreguntasInput() {
 
@@ -723,9 +689,7 @@
     }
 
 
-    /* ========================================================
-       BOTÓN "+ AGREGAR PREGUNTA"
-    ======================================================== */
+
 
     btnAgregarPregunta.addEventListener("click", () => {
 
@@ -739,9 +703,7 @@
     });
 
 
-    /* ========================================================
-       LIMPIAR FORMULARIO / PREGUNTAS
-    ======================================================== */
+
 
     function limpiarFormulario() {
 
@@ -761,9 +723,7 @@
     }
 
 
-    /* ========================================================
-       ABRIR MODAL - NUEVA EVALUACIÓN
-    ======================================================== */
+
 
     btnNueva.addEventListener("click", () => {
 
@@ -778,9 +738,7 @@
     });
 
 
-    /* ========================================================
-       CERRAR MODAL
-    ======================================================== */
+
 
     function cerrarModal() {
 
@@ -794,9 +752,7 @@
     btnCancelar.addEventListener("click", cerrarModal);
 
 
-    /* ========================================================
-       ABRIR MODAL - EDITAR EVALUACIÓN
-    ======================================================== */
+
 
     async function abrirModalEdicion(id) {
 
@@ -831,7 +787,7 @@
 
                 const bloque = crearBloquePregunta();
 
-                /* Reemplazar las 2 opciones vacías por defecto */
+
 
                 const opcionesList =
                     bloque.querySelector(".opciones-list");
@@ -888,10 +844,7 @@
     }
 
 
-    /* ========================================================
-       RECOLECTAR DATOS DE PREGUNTAS DESDE EL DOM
-       (y validar en el frontend antes de enviar)
-    ======================================================== */
+
 
     function recolectarPreguntas() {
 
@@ -1012,9 +965,7 @@
     }
 
 
-    /* ========================================================
-       GUARDAR (CREAR O EDITAR) EVALUACIÓN
-    ======================================================== */
+
 
     form.addEventListener("submit", async event => {
 
@@ -1134,9 +1085,7 @@
     });
 
 
-    /* ========================================================
-       ACCIONES DE TABLA (editar / estado / eliminar)
-    ======================================================== */
+
 
     tableBody.addEventListener("click", async event => {
 
@@ -1247,9 +1196,7 @@
     });
 
 
-    /* ========================================================
-       INICIO
-    ======================================================== */
+
 
     cargarCursos();
     cargarEvaluaciones();

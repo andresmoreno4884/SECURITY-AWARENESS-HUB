@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/../includes/page_context.php'; ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -13,7 +14,7 @@
         Cursos | Security Awareness Hub
     </title>
 
-    <!-- CSS específico de cursos -->
+
     <link
         rel="stylesheet"
         href="css/courses_admin.css">
@@ -22,17 +23,12 @@
 
 <body>
 
-    <!-- =====================================================
-         CURSOS
-         SECURITY AWARENESS HUB
-    ====================================================== -->
+
 
     <section class="courses-panel">
 
 
-        <!-- =================================================
-             ENCABEZADO
-        ================================================== -->
+
 
         <div class="dashboard-heading">
 
@@ -66,14 +62,12 @@
         </div>
 
 
-        <!-- =================================================
-             INDICADORES
-        ================================================== -->
+
 
         <div class="dashboard-cards">
 
 
-            <!-- TOTAL CURSOS -->
+
 
             <div class="dashboard-card">
 
@@ -100,7 +94,7 @@
             </div>
 
 
-            <!-- CURSOS ACTIVOS -->
+
 
             <div class="dashboard-card">
 
@@ -127,7 +121,7 @@
             </div>
 
 
-            <!-- CURSOS INACTIVOS -->
+
 
             <div class="dashboard-card">
 
@@ -156,14 +150,12 @@
         </div>
 
 
-        <!-- =================================================
-             FILTROS
-        ================================================== -->
+
 
         <div class="users-toolbar">
 
 
-            <!-- BUSCADOR -->
+
 
             <div class="search-box">
 
@@ -180,7 +172,7 @@
             </div>
 
 
-            <!-- ESTADO -->
+
 
             <select
                 class="users-filter"
@@ -202,7 +194,7 @@
             </select>
 
 
-            <!-- NIVEL -->
+
 
             <select
                 class="users-filter"
@@ -230,14 +222,12 @@
         </div>
 
 
-        <!-- =================================================
-             DIRECTORIO DE CURSOS
-        ================================================== -->
+
 
         <div class="dashboard-card users-table-card">
 
 
-            <!-- HEADER -->
+
 
             <div class="card-header">
 
@@ -265,9 +255,7 @@
             </div>
 
 
-            <!-- =================================================
-                 TABLA
-            ================================================== -->
+
 
             <div class="table-wrapper">
 
@@ -318,10 +306,7 @@
                     </thead>
 
 
-                    <!--
-                        Los cursos serán cargados posteriormente
-                        desde MySQL mediante PHP + JSON.
-                    -->
+
 
                     <tbody id="cursosTableBody">
 
@@ -344,9 +329,7 @@
             </div>
 
 
-            <!-- =================================================
-                 FOOTER DE TABLA
-            ================================================== -->
+
 
             <div class="table-footer">
 
@@ -395,9 +378,7 @@
         </div>
 
 
-        <!-- =================================================
-             MODAL NUEVO / EDITAR CURSO
-        ================================================== -->
+
 
         <div
             class="user-modal"
@@ -414,9 +395,7 @@
                 aria-labelledby="modalCursoTitulo">
 
 
-                <!-- =================================================
-                     HEADER MODAL
-                ================================================== -->
+
 
                 <div class="user-modal-header">
 
@@ -446,21 +425,19 @@
                 </div>
 
 
-                <!-- =================================================
-                     FORMULARIO
-                ================================================== -->
+
 
                 <form id="formCurso">
 
 
-                    <!-- ID OCULTO -->
+
 
                     <input
                         type="hidden"
                         id="cursoId">
 
 
-                    <!-- NOMBRE DEL CURSO -->
+
 
                     <div class="form-group">
 
@@ -479,7 +456,7 @@
                     </div>
 
 
-                    <!-- DESCRIPCIÓN -->
+
 
                     <div class="form-group">
 
@@ -497,7 +474,7 @@
                     </div>
 
 
-                    <!-- NIVEL -->
+
 
                     <div class="form-group">
 
@@ -532,7 +509,7 @@
                     </div>
 
 
-                    <!-- DURACIÓN -->
+
 
                     <div class="form-group">
 
@@ -552,7 +529,7 @@
                     </div>
 
 
-                    <!-- NÚMERO DE MÓDULOS -->
+
 
                     <div class="form-group">
 
@@ -572,7 +549,7 @@
                     </div>
 
 
-                    <!-- PORCENTAJE DE APROBACIÓN -->
+
 
                     <div class="form-group">
 
@@ -596,7 +573,7 @@
                     </div>
 
 
-                    <!-- ESTADO -->
+
 
                     <div class="form-group">
 
@@ -623,7 +600,7 @@
                     </div>
 
 
-                    <!-- MENSAJE -->
+
 
                     <div
                         id="cursoFormMessage"
@@ -632,9 +609,7 @@
                     </div>
 
 
-                    <!-- =================================================
-                         BOTONES
-                    ================================================== -->
+
 
                     <div class="admin-modal-actions">
 

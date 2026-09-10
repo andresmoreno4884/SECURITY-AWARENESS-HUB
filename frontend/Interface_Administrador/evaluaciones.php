@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/../includes/page_context.php'; ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -13,7 +14,7 @@
         Evaluaciones | Security Awareness Hub
     </title>
 
-    <!-- CSS específico de evaluaciones -->
+
     <link
         rel="stylesheet"
         href="css/evaluaciones.css?v=2">
@@ -22,17 +23,12 @@
 
 <body>
 
-    <!-- =====================================================
-         EVALUACIONES
-         SECURITY AWARENESS HUB
-    ====================================================== -->
+
 
     <section class="admin-view">
 
 
-        <!-- =================================================
-             ENCABEZADO
-        ================================================== -->
+
 
         <div class="dashboard-heading">
 
@@ -66,14 +62,12 @@
         </div>
 
 
-        <!-- =================================================
-             INDICADORES
-        ================================================== -->
+
 
         <div class="dashboard-cards">
 
 
-            <!-- TOTAL EVALUACIONES -->
+
 
             <div class="dashboard-card">
 
@@ -100,7 +94,7 @@
             </div>
 
 
-            <!-- TOTAL PREGUNTAS -->
+
 
             <div class="dashboard-card">
 
@@ -127,7 +121,7 @@
             </div>
 
 
-            <!-- EVALUACIONES ACTIVAS -->
+
 
             <div class="dashboard-card">
 
@@ -156,14 +150,12 @@
         </div>
 
 
-        <!-- =================================================
-             FILTROS
-        ================================================== -->
+
 
         <div class="users-toolbar">
 
 
-            <!-- BUSCADOR -->
+
 
             <div class="search-box">
 
@@ -180,7 +172,7 @@
             </div>
 
 
-            <!-- ESTADO -->
+
 
             <select
                 class="users-filter"
@@ -202,7 +194,7 @@
             </select>
 
 
-            <!-- CURSO -->
+
 
             <select
                 class="users-filter"
@@ -218,14 +210,12 @@
         </div>
 
 
-        <!-- =================================================
-             DIRECTORIO DE EVALUACIONES
-        ================================================== -->
+
 
         <div class="dashboard-card users-table-card">
 
 
-            <!-- HEADER -->
+
 
             <div class="card-header">
 
@@ -253,9 +243,7 @@
             </div>
 
 
-            <!-- =================================================
-                 TABLA
-            ================================================== -->
+
 
             <div class="table-wrapper">
 
@@ -294,14 +282,7 @@
                     </thead>
 
 
-                    <!--
-                        IMPORTANTE:
 
-                        Este tbody comienza vacío.
-
-                        Las evaluaciones serán cargadas posteriormente
-                        desde MySQL mediante PHP + JSON.
-                    -->
 
                     <tbody id="evaluacionesTableBody">
 
@@ -324,9 +305,7 @@
             </div>
 
 
-            <!-- =================================================
-                 FOOTER DE TABLA
-            ================================================== -->
+
 
             <div class="table-footer">
 
@@ -375,9 +354,7 @@
         </div>
 
 
-        <!-- =================================================
-             ESTADO VACÍO
-        ================================================== -->
+
 
         <div
             class="dashboard-panel"
@@ -404,9 +381,7 @@
         </div>
 
 
-        <!-- =================================================
-             MODAL NUEVA / EDITAR EVALUACIÓN
-        ================================================== -->
+
 
         <div
             class="user-modal"
@@ -423,9 +398,7 @@
                 aria-labelledby="modalEvaluacionTitulo">
 
 
-                <!-- =================================================
-                     HEADER MODAL
-                ================================================== -->
+
 
                 <div class="user-modal-header">
 
@@ -455,21 +428,19 @@
                 </div>
 
 
-                <!-- =================================================
-                     FORMULARIO
-                ================================================== -->
+
 
                 <form id="formEvaluacion">
 
 
-                    <!-- ID OCULTO -->
+
 
                     <input
                         type="hidden"
                         id="evaluacionId">
 
 
-                    <!-- NOMBRE -->
+
 
                     <div class="form-group">
 
@@ -488,7 +459,7 @@
                     </div>
 
 
-                    <!-- CURSO -->
+
 
                     <div class="form-group">
 
@@ -511,7 +482,7 @@
                     </div>
 
 
-                    <!-- DESCRIPCIÓN -->
+
 
                     <div class="form-group">
 
@@ -529,7 +500,7 @@
                     </div>
 
 
-                    <!-- NÚMERO DE PREGUNTAS (informativo, se recalcula solo) -->
+
 
                     <div class="form-group">
 
@@ -548,10 +519,7 @@
                     </div>
 
 
-                    <!-- =================================================
-                         PREGUNTAS Y OPCIONES
-                         (bloques generados dinámicamente por JS)
-                    ================================================== -->
+
 
                     <div class="form-group preguntas-section">
 
@@ -579,15 +547,7 @@
                         </p>
 
 
-                        <!--
-                            IMPORTANTE:
 
-                            Este contenedor comienza vacío.
-
-                            Los bloques de pregunta/opción son
-                            generados e insertados aquí mediante
-                            evaluaciones.js
-                        -->
 
                         <div
                             id="preguntasContainer"
@@ -606,7 +566,7 @@
                     </div>
 
 
-                    <!-- ESTADO -->
+
 
                     <div class="form-group">
 
@@ -633,7 +593,7 @@
                     </div>
 
 
-                    <!-- MENSAJE -->
+
 
                     <div
                         id="evaluacionFormMessage"
@@ -642,9 +602,7 @@
                     </div>
 
 
-                    <!-- =================================================
-                         BOTONES
-                    ================================================== -->
+
 
                     <div class="user-modal-actions">
 
@@ -678,7 +636,7 @@
 
     </section>
 
-<script src="js/evaluaciones.js"></script>
+<script src="../scripts/evaluaciones.php"></script>
 
 </body>
 

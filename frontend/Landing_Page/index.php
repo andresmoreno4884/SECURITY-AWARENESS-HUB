@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/../includes/page_context.php'; ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -25,9 +26,7 @@
     </title>
 
 
-    <!-- =====================================================
-         BOOTSTRAP
-    ====================================================== -->
+
 
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -35,9 +34,7 @@
     >
 
 
-    <!-- =====================================================
-         CSS PRINCIPAL
-    ====================================================== -->
+
 
     <link
         rel="stylesheet"
@@ -50,18 +47,14 @@
 <body>
 
 
-    <!-- =====================================================
-         BARRA DE NAVEGACIÓN
-    ====================================================== -->
+
 
     <header class="navbar-wrapper">
 
         <nav class="navbar-custom container">
 
 
-            <!-- =================================================
-                 LOGO
-            ================================================== -->
+
 
             <a
                 href="#inicio"
@@ -80,9 +73,7 @@
             </a>
 
 
-            <!-- =================================================
-                 MENÚ
-            ================================================== -->
+
 
             <ul class="navbar-menu">
 
@@ -119,21 +110,19 @@
             </ul>
 
 
-            <!-- =================================================
-                 ACCESO
-            ================================================== -->
+
 
             <div class="navbar-actions">
 
                 <a
-                    href="../authentication/login.html"
+                    href="../authentication/login.php"
                     class="navbar-button"
                 >
                     Iniciar sesión
                 </a>
 
                 <a
-                    href="../authentication/register.html"
+                    href="../authentication/register.php"
                     class="navbar-register"
                 >
                     Registrarse
@@ -147,16 +136,12 @@
 
 
 
-    <!-- =====================================================
-         CONTENIDO PRINCIPAL
-    ====================================================== -->
+
 
     <main>
 
 
-        <!-- =================================================
-             HERO
-        ================================================== -->
+
 
         <section
             id="inicio"
@@ -164,7 +149,7 @@
         >
 
 
-            <!-- IMAGEN DE FONDO -->
+
 
             <div class="hero-background">
 
@@ -177,12 +162,12 @@
             </div>
 
 
-            <!-- CAPA OSCURA -->
+
 
             <div class="hero-overlay"></div>
 
 
-            <!-- CONTENIDO -->
+
 
             <div class="container hero-container">
 
@@ -215,7 +200,7 @@
                     </p>
 
 
-                    <!-- ACCIONES -->
+
 
                     <div class="hero-actions">
 
@@ -244,9 +229,7 @@
 
 
 
-        <!-- =================================================
-             RIESGOS DE SEGURIDAD
-        ================================================== -->
+
 
         <section
             id="nosotros"
@@ -256,7 +239,7 @@
             <div class="container">
 
 
-                <!-- ENCABEZADO -->
+
 
                 <div class="row">
 
@@ -298,14 +281,12 @@
                 </div>
 
 
-                <!-- TARJETAS -->
+
 
                 <div class="row g-4 security-cards">
 
 
-                    <!-- =================================================
-                         RIESGO 01
-                    ================================================== -->
+
 
                     <div class="col-12 col-md-6 col-lg-4">
 
@@ -356,9 +337,7 @@
 
 
 
-                    <!-- =================================================
-                         RIESGO 02
-                    ================================================== -->
+
 
                     <div class="col-12 col-md-6 col-lg-4">
 
@@ -410,9 +389,7 @@
 
 
 
-                    <!-- =================================================
-                         RIESGO 03
-                    ================================================== -->
+
 
                     <div class="col-12 col-md-6 col-lg-4">
 
@@ -470,9 +447,7 @@
 
 
 
-        <!-- =================================================
-             CÓMO FUNCIONA
-        ================================================== -->
+
 
         <section
             id="como-funciona"
@@ -482,7 +457,7 @@
             <div class="container">
 
 
-                <!-- ENCABEZADO -->
+
 
                 <div class="row">
 
@@ -524,12 +499,12 @@
                 </div>
 
 
-                <!-- PASOS -->
+
 
                 <div class="row g-4 how-steps">
 
 
-                    <!-- PASO 01 -->
+
 
                     <div class="col-12 col-lg-4">
 
@@ -576,7 +551,7 @@
 
 
 
-                    <!-- PASO 02 -->
+
 
                     <div class="col-12 col-lg-4">
 
@@ -622,7 +597,7 @@
 
 
 
-                    <!-- PASO 03 -->
+
 
                     <div class="col-12 col-lg-4">
 
@@ -674,9 +649,7 @@
 
 
 
-        <!-- =================================================
-             CURSOS
-        ================================================== -->
+
 
         <section
             id="cursos"
@@ -686,7 +659,7 @@
             <div class="container">
 
 
-                <!-- ENCABEZADO -->
+
 
                 <div class="row">
 
@@ -725,14 +698,12 @@
                 </div>
 
 
-                <!-- CURSOS -->
+
 
                 <div class="row g-4 courses-grid">
 
 
-                    <!-- =================================================
-                         CURSO 01
-                    ================================================== -->
+
 
                     <div class="col-12 col-md-6 col-lg-3">
 
@@ -789,7 +760,7 @@
 
 
                                     <a
-                                        href="../authentication/login.html"
+                                        href="../authentication/login.php"
                                         aria-label="Acceder al curso de fundamentos de ciberseguridad"
                                     >
                                         →
@@ -805,9 +776,7 @@
 
 
 
-                    <!-- =================================================
-                         CURSO 02
-                    ================================================== -->
+
 
                     <div class="col-12 col-md-6 col-lg-3">
 
@@ -863,7 +832,7 @@
 
 
                                     <a
-                                        href="../authentication/login.html"
+                                        href="../authentication/login.php"
                                         aria-label="Acceder al curso de phishing"
                                     >
                                         →
@@ -879,9 +848,7 @@
 
 
 
-                    <!-- =================================================
-                         CURSO 03
-                    ================================================== -->
+
 
                     <div class="col-12 col-md-6 col-lg-3">
 
@@ -938,7 +905,7 @@
 
 
                                     <a
-                                        href="../authentication/login.html"
+                                        href="../authentication/login.php"
                                         aria-label="Acceder al curso de seguridad de contraseñas"
                                     >
                                         →
@@ -954,9 +921,7 @@
 
 
 
-                    <!-- =================================================
-                         CURSO 04
-                    ================================================== -->
+
 
                     <div class="col-12 col-md-6 col-lg-3">
 
@@ -1012,7 +977,7 @@
 
 
                                     <a
-                                        href="../authentication/login.html"
+                                        href="../authentication/login.php"
                                         aria-label="Acceder al curso de ingeniería social"
                                     >
                                         →
@@ -1034,9 +999,7 @@
 
 
 
-        <!-- =================================================
-             IMPACTO
-        ================================================== -->
+
 
         <section class="impact-section">
 
@@ -1045,7 +1008,7 @@
                 <div class="row g-4">
 
 
-                    <!-- IMPACTO 01 -->
+
 
                     <div class="col-12 col-md-6 col-lg-3">
 
@@ -1064,7 +1027,7 @@
                     </div>
 
 
-                    <!-- IMPACTO 02 -->
+
 
                     <div class="col-12 col-md-6 col-lg-3">
 
@@ -1083,7 +1046,7 @@
                     </div>
 
 
-                    <!-- IMPACTO 03 -->
+
 
                     <div class="col-12 col-md-6 col-lg-3">
 
@@ -1102,7 +1065,7 @@
                     </div>
 
 
-                    <!-- IMPACTO 04 -->
+
 
                     <div class="col-12 col-md-6 col-lg-3">
 
@@ -1128,9 +1091,7 @@
 
 
 
-        <!-- =================================================
-             CTA FINAL
-        ================================================== -->
+
 
         <section class="final-cta">
 
@@ -1169,7 +1130,7 @@
                     <div class="final-cta-actions">
 
                         <a
-                            href="../authentication/register.html"
+                            href="../authentication/register.php"
                             class="final-cta-button"
                         >
                             Crear mi cuenta
@@ -1177,7 +1138,7 @@
 
 
                         <a
-                            href="../authentication/login.html"
+                            href="../authentication/login.php"
                             class="final-cta-secondary"
                         >
                             Ya tengo una cuenta
@@ -1195,9 +1156,7 @@
 
 
 
-    <!-- =====================================================
-         FOOTER
-    ====================================================== -->
+
 
     <footer
         id="contacto"
@@ -1210,7 +1169,7 @@
             <div class="row footer-main">
 
 
-                <!-- BRAND -->
+
 
                 <div class="col-12 col-lg-5">
 
@@ -1249,9 +1208,7 @@
 
 
 
-                <!-- =================================================
-                     PLATAFORMA
-                ================================================== -->
+
 
                 <div class="col-6 col-lg-2">
 
@@ -1292,9 +1249,7 @@
 
 
 
-                <!-- =================================================
-                     RECURSOS
-                ================================================== -->
+
 
                 <div class="col-6 col-lg-2">
 
@@ -1318,13 +1273,13 @@
                         </li>
 
                         <li>
-                            <a href="../authentication/register.html">
+                            <a href="../authentication/register.php">
                                 Registrarse
                             </a>
                         </li>
 
                         <li>
-                            <a href="../authentication/login.html">
+                            <a href="../authentication/login.php">
                                 Iniciar sesión
                             </a>
                         </li>
@@ -1335,9 +1290,7 @@
 
 
 
-                <!-- =================================================
-                     SOPORTE
-                ================================================== -->
+
 
                 <div class="col-12 col-lg-3">
 
@@ -1355,13 +1308,13 @@
                         </li>
 
                         <li>
-                            <a href="../authentication/login.html">
+                            <a href="../authentication/login.php">
                                 Acceso a plataforma
                             </a>
                         </li>
 
                         <li>
-                            <a href="../authentication/forgot-password.html">
+                            <a href="../authentication/forgot-password.php">
                                 Recuperar contraseña
                             </a>
                         </li>
@@ -1374,9 +1327,7 @@
 
 
 
-            <!-- =================================================
-                 FOOTER BOTTOM
-            ================================================== -->
+
 
             <div class="footer-bottom">
 
@@ -1396,20 +1347,16 @@
 
 
 
-    <!-- =====================================================
-         BOOTSTRAP JAVASCRIPT
-    ====================================================== -->
+
 
     <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     ></script>
 
 
-    <!-- =====================================================
-         JAVASCRIPT DEL LANDING
-    ====================================================== -->
 
-    <script src="js/script.js"></script>
+
+    <script src="../scripts/script.php"></script>
 
 
 </body>

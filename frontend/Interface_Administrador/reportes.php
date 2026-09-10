@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/../includes/page_context.php'; ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -13,7 +14,7 @@
         Reportes | Security Awareness Hub
     </title>
 
-    <!-- CSS específico de reportes -->
+
     <link
         rel="stylesheet"
         href="css/reportes.css">
@@ -22,16 +23,11 @@
 
 <body>
 
-    <!-- =====================================================
-         REPORTES
-         SECURITY AWARENESS HUB
-    ====================================================== -->
+
 
     <section class="admin-view">
 
-        <!-- =================================================
-             ENCABEZADO
-        ================================================== -->
+
 
         <div class="dashboard-heading">
 
@@ -51,9 +47,7 @@
         </div>
 
 
-        <!-- =================================================
-             FILTROS
-        ================================================== -->
+
 
         <div class="dashboard-panel">
 
@@ -76,7 +70,7 @@
 
             <div class="report-filters">
 
-                <!-- TIPO DE REPORTE -->
+
 
                 <div class="form-group">
 
@@ -117,7 +111,7 @@
                 </div>
 
 
-                <!-- PERIODO -->
+
 
                 <div class="form-group">
 
@@ -150,7 +144,7 @@
                 </div>
 
 
-                <!-- BOTÓN -->
+
 
                 <button
                     type="button"
@@ -166,14 +160,12 @@
         </div>
 
 
-        <!-- =================================================
-             INDICADORES
-        ================================================== -->
+
 
         <div class="dashboard-cards">
 
 
-            <!-- USUARIOS -->
+
 
             <div class="dashboard-card">
 
@@ -200,7 +192,7 @@
             </div>
 
 
-            <!-- CURSOS -->
+
 
             <div class="dashboard-card">
 
@@ -227,7 +219,7 @@
             </div>
 
 
-            <!-- PROMEDIO -->
+
 
             <div class="dashboard-card">
 
@@ -256,9 +248,7 @@
         </div>
 
 
-        <!-- =================================================
-             RESULTADO DEL REPORTE
-        ================================================== -->
+
 
         <div class="dashboard-panel">
 
@@ -279,9 +269,7 @@
             </div>
 
 
-            <!-- =================================================
-                 ESTADO INICIAL
-            ================================================== -->
+
 
             <div
                 class="empty-state"
@@ -303,9 +291,7 @@
             </div>
 
 
-            <!-- =================================================
-                 RESULTADOS
-            ================================================== -->
+
 
             <div
                 class="report-results"

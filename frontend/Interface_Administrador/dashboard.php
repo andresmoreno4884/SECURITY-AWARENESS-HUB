@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/../includes/page_context.php'; ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -13,7 +14,7 @@
         Dashboard | Security Awareness Hub
     </title>
 
-    <!-- CSS del dashboard -->
+
     <link
         rel="stylesheet"
         href="css/dashboard.css">
@@ -22,17 +23,12 @@
 
 <body>
 
-    <!-- =====================================================
-         DASHBOARD ADMINISTRATIVO
-         SECURITY AWARENESS HUB
-    ====================================================== -->
+
 
     <section class="admin-view">
 
 
-        <!-- =================================================
-             ENCABEZADO
-        ================================================== -->
+
 
         <div class="dashboard-heading">
 
@@ -56,14 +52,12 @@
         </div>
 
 
-        <!-- =================================================
-             INDICADORES PRINCIPALES
-        ================================================== -->
+
 
         <div class="dashboard-cards">
 
 
-            <!-- USUARIOS -->
+
 
             <div class="dashboard-card">
 
@@ -90,7 +84,7 @@
             </div>
 
 
-            <!-- CURSOS -->
+
 
             <div class="dashboard-card">
 
@@ -117,7 +111,7 @@
             </div>
 
 
-            <!-- EVALUACIONES -->
+
 
             <div class="dashboard-card">
 
@@ -144,7 +138,7 @@
             </div>
 
 
-            <!-- RESULTADOS -->
+
 
             <div class="dashboard-card">
 
@@ -173,16 +167,12 @@
         </div>
 
 
-        <!-- =================================================
-             RESUMEN GENERAL
-        ================================================== -->
+
 
         <div class="dashboard-grid">
 
 
-            <!-- =================================================
-                 ACTIVIDAD GENERAL
-            ================================================== -->
+
 
             <div class="dashboard-panel">
 
@@ -210,7 +200,7 @@
                 <div class="dashboard-summary">
 
 
-                    <!-- USUARIOS ACTIVOS -->
+
 
                     <div class="summary-item">
 
@@ -233,7 +223,7 @@
                     </div>
 
 
-                    <!-- CURSOS ACTIVOS -->
+
 
                     <div class="summary-item">
 
@@ -256,7 +246,7 @@
                     </div>
 
 
-                    <!-- EVALUACIONES ACTIVAS -->
+
 
                     <div class="summary-item">
 
@@ -279,7 +269,7 @@
                     </div>
 
 
-                    <!-- PROMEDIO GENERAL -->
+
 
                     <div class="summary-item">
 
@@ -306,9 +296,7 @@
             </div>
 
 
-            <!-- =================================================
-                 ACCIONES RÁPIDAS
-            ================================================== -->
+
 
             <div class="dashboard-panel">
 
@@ -332,7 +320,7 @@
                 <div class="quick-actions">
 
 
-                    <!-- USUARIOS -->
+
 
                     <button
                         type="button"
@@ -362,7 +350,7 @@
                     </button>
 
 
-                    <!-- CURSOS -->
+
 
                     <button
                         type="button"
@@ -392,7 +380,7 @@
                     </button>
 
 
-                    <!-- EVALUACIONES -->
+
 
                     <button
                         type="button"
@@ -422,7 +410,7 @@
                     </button>
 
 
-                    <!-- RESULTADOS -->
+
 
                     <button
                         type="button"
@@ -458,9 +446,7 @@
         </div>
 
 
-        <!-- =================================================
-             INFORMACIÓN DEL SISTEMA
-        ================================================== -->
+
 
         <div class="dashboard-panel">
 

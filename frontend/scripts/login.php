@@ -1,13 +1,9 @@
-/* =========================================================
-   SECURITY AWARENESS HUB
-   LOGIN
-   PHP + MYSQL + JSON
-   ========================================================= */
+<?php header('Content-Type: application/javascript; charset=UTF-8'); ?>
 
 
-/* =========================================================
-   ELEMENTOS
-   ========================================================= */
+
+
+
 
 const loginForm =
     document.getElementById("loginForm");
@@ -22,9 +18,7 @@ const rememberInput =
     document.getElementById("remember");
 
 
-/* =========================================================
-   CREAR MENSAJE
-   ========================================================= */
+
 
 let loginMessage =
     document.getElementById("loginMessage");
@@ -61,9 +55,7 @@ if (!loginMessage && loginForm) {
 }
 
 
-/* =========================================================
-   MENSAJES
-   ========================================================= */
+
 
 function showMessage(message, type) {
 
@@ -95,9 +87,7 @@ function clearMessage() {
 }
 
 
-/* =========================================================
-   VALIDAR CORREO
-   ========================================================= */
+
 
 function validEmail(email) {
 
@@ -109,9 +99,7 @@ function validEmail(email) {
 }
 
 
-/* =========================================================
-   LOGIN
-   ========================================================= */
+
 
 if (loginForm) {
 
@@ -124,9 +112,7 @@ if (loginForm) {
             clearMessage();
 
 
-            /* =================================================
-               OBTENER DATOS
-            ================================================= */
+
 
             const email =
                 emailInput.value
@@ -137,9 +123,7 @@ if (loginForm) {
                 passwordInput.value;
 
 
-            /* =================================================
-               VALIDACIONES
-            ================================================= */
+
 
             if (!email || !password) {
 
@@ -181,9 +165,7 @@ if (loginForm) {
             }
 
 
-            /* =================================================
-               BOTÓN
-            ================================================= */
+
 
             const loginButton =
                 loginForm.querySelector(".login-button");
@@ -202,9 +184,7 @@ if (loginForm) {
             try {
 
 
-                /* =================================================
-                   PETICIÓN POST A PHP
-                ================================================= */
+
 
                 const response =
                     await fetch(
@@ -228,9 +208,7 @@ if (loginForm) {
                     );
 
 
-                /* =================================================
-                   LEER RESPUESTA
-                ================================================= */
+
 
                 const responseText =
                     await response.text();
@@ -258,9 +236,7 @@ if (loginForm) {
                 }
 
 
-                /* =================================================
-                   ERROR DE LOGIN
-                ================================================= */
+
 
                 if (
                     !response.ok ||
@@ -288,17 +264,13 @@ if (loginForm) {
                 }
 
 
-                /* =================================================
-                   USUARIO AUTENTICADO
-                ================================================= */
+
 
                 const user =
                     data.user;
 
 
-                /* =================================================
-                   VERIFICAR INFORMACIÓN RECIBIDA
-                ================================================= */
+
 
                 if (!user || !user.rol) {
 
@@ -314,9 +286,7 @@ if (loginForm) {
                 }
 
 
-                /* =================================================
-                   INFORMACIÓN PARA FRONTEND
-                ================================================= */
+
 
                 const sessionUser = {
 
@@ -347,9 +317,7 @@ if (loginForm) {
                     );
 
 
-                /* =================================================
-                   RECORDAR SESIÓN
-                ================================================= */
+
 
                 if (
                     rememberInput &&
@@ -379,9 +347,7 @@ if (loginForm) {
                 }
 
 
-                /* =================================================
-                   MENSAJE ÉXITO
-                ================================================= */
+
 
                 showMessage(
                     "Inicio de sesión correcto. Entrando...",
@@ -389,36 +355,30 @@ if (loginForm) {
                 );
 
 
-                /* =================================================
-                   REDIRECCIÓN
-                ================================================= */
+
 
                 setTimeout(
                     function () {
 
 
-                        /* =========================================
-                           ADMINISTRADOR
-                        ========================================= */
+
 
                         if (
                             user.rol === "admin"
                         ) {
 
                             window.location.href =
-                                "../Interface_Administrador/panel.html";
+                                "../Interface_Administrador/panel.php";
 
                             return;
 
                         }
 
 
-                        /* =========================================
-                           USUARIO NORMAL
-                        ========================================= */
+
 
                         window.location.href =
-                            "../Interface_User/Curse/course.html";
+                            "../Interface_User/Curse/course.php";
 
 
                     },

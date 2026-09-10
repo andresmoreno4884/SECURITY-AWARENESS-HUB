@@ -1,10 +1,6 @@
 <?php
 
-/* =====================================================
-   SECURITY AWARENESS HUB
-   API - REGISTRO DE USUARIOS
-   PHP + MYSQL + JSON
-===================================================== */
+
 
 session_start();
 
@@ -14,18 +10,31 @@ header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Access-Control-Allow-Credentials: true");
 
-/* =====================================================
-   SOLICITUD OPTIONS
-===================================================== */
+
 
 if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
     http_response_code(200);
     exit;
 }
 
-/* =====================================================
-   SOLO PERMITIR POST
-===================================================== */
+
+
+if (
+    !isset($_SESSION["authenticated"]) ||
+    $_SESSION["authenticated"] !== true ||
+    ($_SESSION["rol"] ?? "") !== "admin"
+) {
+    http_response_code(403);
+
+    echo json_encode([
+        "success" => false,
+        "message" => "Solo un administrador puede crear usuarios."
+    ], JSON_UNESCAPED_UNICODE);
+
+    exit;
+}
+
+
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 
@@ -39,17 +48,13 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     exit;
 }
 
-/* =====================================================
-   CONEXIÓN CON MYSQL
-===================================================== */
+
 
 require_once "../Config/database.php";
 
 $conn = Database::connect();
 
-/* =====================================================
-   RECIBIR JSON
-===================================================== */
+
 
 $input = file_get_contents("php://input");
 
@@ -67,18 +72,14 @@ if (!is_array($data)) {
     exit;
 }
 
-/* =====================================================
-   OBTENER DATOS
-===================================================== */
+
 
 $nombres = trim($data["nombres"] ?? "");
 $apellidos = trim($data["apellidos"] ?? "");
 $correo = strtolower(trim($data["correo"] ?? ""));
 $password = $data["password"] ?? "";
 
-/* =====================================================
-   VALIDAR CAMPOS OBLIGATORIOS
-===================================================== */
+
 
 if (
     $nombres === "" ||
@@ -97,9 +98,7 @@ if (
     exit;
 }
 
-/* =====================================================
-   VALIDAR NOMBRES
-===================================================== */
+
 
 if (strlen($nombres) < 2) {
 
@@ -113,9 +112,7 @@ if (strlen($nombres) < 2) {
     exit;
 }
 
-/* =====================================================
-   VALIDAR APELLIDOS
-===================================================== */
+
 
 if (strlen($apellidos) < 2) {
 
@@ -129,9 +126,7 @@ if (strlen($apellidos) < 2) {
     exit;
 }
 
-/* =====================================================
-   VALIDAR CORREO
-===================================================== */
+
 
 if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
 
@@ -145,9 +140,7 @@ if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
-/* =====================================================
-   VALIDAR CONTRASEÑA
-===================================================== */
+
 
 if (strlen($password) < 8) {
 
@@ -161,9 +154,7 @@ if (strlen($password) < 8) {
     exit;
 }
 
-/* =====================================================
-   COMPROBAR SI EL CORREO YA EXISTE
-===================================================== */
+
 
 $sqlCheck = "
     SELECT id
@@ -184,9 +175,7 @@ $stmtCheck->execute();
 
 $existingUser = $stmtCheck->fetch();
 
-/* =====================================================
-   CORREO YA REGISTRADO
-===================================================== */
+
 
 if ($existingUser) {
 
@@ -200,25 +189,19 @@ if ($existingUser) {
     exit;
 }
 
-/* =====================================================
-   ENCRIPTAR CONTRASEÑA
-===================================================== */
+
 
 $passwordHash = password_hash(
     $password,
     PASSWORD_DEFAULT
 );
 
-/* =====================================================
-   VALORES POR DEFECTO
-===================================================== */
+
 
 $rol = "usuario";
 $estado = "activo";
 
-/* =====================================================
-   INSERTAR USUARIO
-===================================================== */
+
 
 $sql = "
     INSERT INTO usuarios (
@@ -277,9 +260,7 @@ $stmt->bindValue(
     PDO::PARAM_STR
 );
 
-/* =====================================================
-   EJECUTAR REGISTRO
-===================================================== */
+
 
 try {
 

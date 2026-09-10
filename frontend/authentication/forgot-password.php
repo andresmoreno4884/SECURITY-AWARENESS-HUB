@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/../includes/page_context.php'; ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -15,25 +16,19 @@
 
 <body>
 
-    <!-- =================================================
-         FONDO
-    ================================================== -->
+
 
     <div class="background"></div>
 
 
-    <!-- =================================================
-         CONTENEDOR
-    ================================================== -->
+
 
     <main class="recovery-container">
 
         <section class="recovery-card">
 
 
-            <!-- =================================================
-                 LOGO
-            ================================================== -->
+
 
             <div class="logo">
 
@@ -44,9 +39,7 @@
             </div>
 
 
-            <!-- =================================================
-                 ENCABEZADO
-            ================================================== -->
+
 
             <div class="recovery-header">
 
@@ -67,14 +60,12 @@
             </div>
 
 
-            <!-- =================================================
-                 FORMULARIO
-            ================================================== -->
+
 
             <form id="recoveryForm">
 
 
-                <!-- CORREO -->
+
 
                 <div class="input-group">
 
@@ -87,12 +78,12 @@
                 </div>
 
 
-                <!-- MENSAJE -->
+
 
                 <div id="message"></div>
 
 
-                <!-- BOTÓN -->
+
 
                 <button type="submit" class="recovery-button">
                     Buscar cuenta
@@ -101,9 +92,7 @@
             </form>
 
 
-            <!-- =================================================
-                 CAMBIAR CONTRASEÑA
-            ================================================== -->
+
 
             <form id="newPasswordForm" class="hidden">
 
@@ -140,25 +129,21 @@
             </form>
 
 
-            <!-- =================================================
-                 VOLVER AL LOGIN
-            ================================================== -->
+
 
             <div class="login-link">
 
                 <a href="
-                login.html">
+                login.php">
                     ← Volver al inicio de sesión
                 </a>
 
             </div>
 
 
-            <!-- =================================================
-                 VOLVER AL INICIO
-            ================================================== -->
 
-            <a href="../../Landing_Page/index.html" class="back-link">
+
+            <a href="../../Landing_Page/index.php" class="back-link">
                 Volver al inicio
             </a>
 
@@ -168,11 +153,9 @@
     </main>
 
 
-    <!-- =================================================
-         JAVASCRIPT
-    ================================================== -->
 
-    <script src="js/forgot-password.js"></script>
+
+    <script src="../scripts/forgot-password.php"></script>
 
 </body>
 
